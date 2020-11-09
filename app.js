@@ -6,6 +6,7 @@ var server = http.createServer(function(req, res) {
     res.end(fs.readFileSync(__dirname + '/socket.html', 'utf-8'));
 }).listen(3000);  // ポート競合の場合は値を変更
  
+
 var io = socketio.listen(server);
  
 io.sockets.on('connection', function(socket) {
