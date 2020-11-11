@@ -5,7 +5,7 @@ var fs = require('fs');
 
 var server = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type' : 'text/html'});
-    res.end(fs.readFileSync(__dirname + '/socket.html', 'utf-8'));
+    res.end(fs.readFileSync(__dirname + '/indexpmae.html', 'utf-8'));
 }).listen(process.env.PORT || 3000);  // ポート競合の場合は値を変更
  
 

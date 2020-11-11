@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>sotsusei</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+        
+		<style>
+			body {
+				background-color: #000000;
+			}
+
+			#blocker {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+                background-color: rgba(0,0,0,0.5);
+			}
+            
+            #instructions {
+				width: 100%;
+				height: 100%;
+
+				display: -webkit-box;
+				display: -moz-box;
+				display: box;
+
+				-webkit-box-orient: horizontal;
+				-moz-box-orient: horizontal;
+				box-orient: horizontal;
+
+				-webkit-box-pack: center;
+				-moz-box-pack: center;
+				box-pack: center;
+
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				box-align: center;
+
+				color: #ffffff;
+				text-align: center;
+				font-family: Arial;
+				font-size: 14px;
+				line-height: 24px;
+
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container" style="none;"></div>
+		<div id="blocker" style="none">
+
+			<div id="instructions" style>
+				<span style="font-size:36px">Click to play</span>
+				<br /><br />
+				Move: WASD<br/>
+				Jump: SPACE<br/>
+				Look: MOUSE
+			</div>
+
+		</div>
+
+
+		<script type="module">
+
+			import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.module.js';
+            //import { TWEEN } from './jsm/libs/tween.module.min.js';
+            
+			import { TrackballControls } from './js/TrackballControls.js';
+            import { FirstPersonControls } from './js/FirstPersonControls.js';
+            import { PointerLockControls } from './js/PointerLockControls.js';
+            
+            
+			import { CSS3DRenderer, CSS3DObject } from './js/CSS3DRenderer.js';
+            import { Clock } from './js/Clock.js';
+            
+            import { EffectComposer } from './js/EffectComposer.js';
+			import { RenderPass } from './js/RenderPass.js';
+			import { ShaderPass } from './js/ShaderPass.js';
+
+			var camera, scene, renderer;
+			var controls, clock;
+            var nowPos = [];
+            let raycaster;
+            //var playerElement;
+            
+            let nowPosVector = new THREE.Vector3(0,0,0);
+            let nowRotVector = new THREE.Vector3(0,0,-1);
+            var player = new THREE.Group();
+            var playerElement;
+            
+            const objects = [];
+            
+            let moveForward = false;
+			let moveBackward = false;
+			let moveLeft = false;
+			let moveRight = false;
+            let moveUp = false;
+            let moveDown = false;
+			let canJump = false;
+
+			let prevTime = performance.now();
+			const velocity = new THREE.Vector3();
+			const direction = new THREE.Vector3();
+			const vertex = new THREE.Vector3();
+			const color = new THREE.Color();
+
+			var Element = function ( id, x, y, z, rx, ry, rz, wPx, hPx ) {
+
+				var div = document.createElement( 'div' );
+				div.style.width = wPx;
+				div.style.height = hPx;
+				div.style.backgroundColor = '#000';
+
+				var iframe = document.createElement( 'iframe' );
+				iframe.style.width = wPx;
+				iframe.style.height = hPx;
+				iframe.style.border = '0px';
+				iframe.src = [ 'https://www.youtube.com/embed/', id, '?rel=0&','mute=1&autoplay=1','&controls=0&','version=3&loop=1&playlist=', id].join( '' );
+				div.appendChild( iframe );
+
+				var object = new CSS3DObject( div );
+				object.position.set( x, y, z );
+				object.rotation.y = ry;
+
+				return object;
+
+			};
+
+			init();
+			animate();
+
+			function init() {
+
+				var container = document.getElementById( 'container' );
+                container.style.display = 'none';
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera.position.set( 0, 0, 1000 );
+
+				scene = new THREE.Scene();
+
+				renderer = new CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+                
+				var group = new THREE.Group();
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0,   240, 0,             0 , 0, '480px', '270px') );
+				group.add( new Element( 'ufslsvJ3PhY',   240, 0,     0, 0,   Math.PI / 2 , 0, '480px', '270px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0, - 240, 0,       Math.PI , 0, '480px', '270px') );
+				group.add( new Element( 'ufslsvJ3PhY', - 240, 0,     0, 0, - Math.PI / 2 , 0, '480px', '270px') );
+				scene.add( group );
+                
+                playerElement = new Element( 'ufslsvJ3PhY', nowPosVector.x, nowPosVector.y, nowPosVector.z + 100, 
+                                              nowRotVector.x,   nowRotVector.y,    nowRotVector.z , '240px', '135px');
+                player.add(playerElement);
+                console.log(playerElement);
+                //player.add( new Element( 'ufslsvJ3PhY', -nowPosVector.x, -nowPosVector.y, -nowPosVector.z, 0,    0,    0 , '480px', '270px') );
+                scene.add( player );
+                
+                //TrackballControlsをonにするときはココ
+                /*
+				controls = new TrackballControls( camera, renderer.domElement );
+				controls.rotateSpeed = 4;
+                */
+                
+                //////////////////////////////////
+                //PointerLockControlsはここ
+                controls = new PointerLockControls(camera, document.body);
+                
+                const blocker = document.getElementById( 'blocker' );
+				const instructions = document.getElementById( 'instructions' );
+                blocker.style.display = 'block';
+				instructions.style.display = '';
+                
+				instructions.addEventListener( 'click', function () {
+
+					controls.lock();
+
+				}, false );
+
+				controls.addEventListener( 'lock', function () {
+                    container.style.display = '';
+					instructions.style.display = 'none';
+					blocker.style.display = 'none';
+
+				} );
+
+				controls.addEventListener( 'unlock', function () {
+                    container.style.display = 'none';
+					blocker.style.display = 'block';
+					instructions.style.display = '';
+
+				} );
+
+				scene.add( controls.getObject() );
+
+				const onKeyDown = function ( event ) {
+
+					switch ( event.keyCode ) {
+
+						case 38: // up
+						case 87: // w
+							moveForward = true;
+							break;
+
+						case 37: // left
+						case 65: // a
+							moveLeft = true;
+							break;
+
+						case 40: // down
+						case 83: // s
+							moveBackward = true;
+							break;
+
+						case 39: // right
+						case 68: // d
+							moveRight = true;
+							break;
+                        
+						case 82: // r
+							moveUp = true;
+							break;
+                        
+                        case 70: // f
+							moveDown = true;
+							break;
+
+						case 32: // space
+							if ( canJump === true ) velocity.y += 0;
+							canJump = false;
+							break;
+
+					}
+
+				};
+
+				const onKeyUp = function ( event ) {
+
+					switch ( event.keyCode ) {
+
+						case 38: // up
+						case 87: // w
+							moveForward = false;
+							break;
+
+						case 37: // left
+						case 65: // a
+							moveLeft = false;
+							break;
+
+						case 40: // down
+						case 83: // s
+							moveBackward = false;
+							break;
+
+						case 39: // right
+						case 68: // d
+							moveRight = false;
+							break;
+                            
+                        case 82: // r
+							moveUp = false;
+							break;
+                        
+                        case 70: // f
+							moveDown = false;
+							break;
+
+					}
+
+				};
+
+				document.addEventListener( 'keydown', onKeyDown, false );
+				document.addEventListener( 'keyup', onKeyUp, false );
+
+				raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
+                
+                //////////////////////////////////////
+                
+                clock = new THREE.Clock();
+                /*
+                //FPSはここ
+                controls = new FirstPersonControls(camera, renderer.domElement);
+                controls.movementSpeed = 1000;
+				controls.lookSpeed = 0.1;
+                */
+                /////////////////////////////////////////
+                //document.body.appendChild( renderer.domElement );
+                
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				// Block iframe events when dragging camera
+
+				//var blocker = document.getElementById( 'blocker' );
+				//blocker.style.display = 'none';
+                //blocker.style.display = '';
+
+                //FPSとPointerのときにはここも消そう！
+                /*
+				controls.addEventListener( 'start', function () {
+
+					blocker.style.display = '';
+
+				} );
+				controls.addEventListener( 'end', function () {
+
+					blocker.style.display = 'none';
+
+				} );
+                */
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = 0.5 * window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+                //controls.handleResize();
+
+			}
+
+			function animate() {
+                
+				requestAnimationFrame( animate );
+				const time = performance.now();
+
+				if ( controls.isLocked === true ) {
+
+					raycaster.ray.origin.copy( controls.getObject().position );
+					raycaster.ray.origin.y -= 10;
+
+					const intersections = raycaster.intersectObjects( objects );
+
+					const onObject = intersections.length > 0;
+
+					const delta = ( time - prevTime ) / 250;
+
+					velocity.x -= velocity.x * 1.0 * delta;//速度
+					velocity.z -= velocity.z * 1.0 * delta;
+                    velocity.y -= velocity.y * 1.0 * delta;
+
+					//velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
+
+					direction.z = Number( moveForward ) - Number( moveBackward );
+					direction.x = Number( moveRight ) - Number( moveLeft );
+                    direction.y = Number( moveDown ) - Number( moveUp );
+					direction.normalize(); // this ensures consistent movements in all directions
+
+					if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
+					if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
+                    if ( moveUp||moveDown )velocity.y -= direction.y * 400.0 * delta;
+
+					if ( onObject === true ) {
+
+						velocity.y = Math.max( 0, velocity.y );
+						canJump = true;
+
+					}
+
+					controls.moveRight( - velocity.x * delta );
+					controls.moveForward( - velocity.z * delta );
+
+					controls.getObject().position.y += ( velocity.y * delta ); // new behavior
+                    
+                    nowPosVector = controls.getObject().position;
+                    nowRotVector = controls.getObject().rotation;
+                    //playerElement.position = controls.getObject().position;
+                    
+                    playerElement.position.x = nowPosVector.x;
+                    //playerElement.position.y = nowPosVector.y;
+                    playerElement.position.z =  - nowPosVector.z - 100;
+                    
+                    playerElement.rotation.x = nowRotVector.x;
+                    //playerElement.rotation.y = nowRotVector.y;
+                    playerElement.rotation.z = nowRotVector.z;
+                    //console.log(playerElement);
+                    
+                    //let newLength = nowPos.push(nowPosVector);
+                    console.log(nowPosVector.z);
+                    
+                    /*
+					if ( controls.getObject().position.y < 10 ) {
+
+						velocity.y = 0;
+						controls.getObject().position.y = 10;
+
+						canJump = true;
+
+					}
+                    */
+
+				}
+
+				prevTime = time;
+                
+                //renderer.setSize(window.innerWidth , window.innerHeight);
+				renderer.render( scene, camera );
+                
+                
+			}
+
+		</script>
+	</body>
+</html>
