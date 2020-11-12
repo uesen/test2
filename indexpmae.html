@@ -418,9 +418,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     playerElement.position.z =  - nowPosVector.z - 100;
                     
                     
-                    otherPlayerElement.position.x = nowPosVector.x;
-                    //otherPlayerElement.position.y = nowPosVector.y;
-                    otherPlayerElement.position.z =  - nowPosVector.z - 100;
+                    otherPlayerElement.position.x = otherPosVector.x;
+                    //otherPlayerElement.position.y = otherPosVector.y;
+                    otherPlayerElement.position.z =  - otherPosVector.z - 100;
                     
                     playerElement.rotation.x = nowRotVector.x;
                     //playerElement.rotation.y = nowRotVector.y;
@@ -428,7 +428,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     //console.log(playerElement);
                     
                     //let newLength = nowPos.push(nowPosVector);
-                    console.log(nowPosVector.z);
+                    //console.log(nowPosVector.z);
                     
                     /*
 					if ( controls.getObject().position.y < 10 ) {
@@ -440,14 +440,16 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 					}
                     */
+                    
                     socket.on("server_to_client", function(data){appendPos(data.value)});
+                    
             function appendPos(vector) {
                 otherPosVector.x = vector.x
                 otherPosVector.y = vector.y
                 otherPosVector.z = vector.z
             }
             
-                socket.emit("client_to_server", {value : nowPosVector});
+                socket.emit("client_to_server_broadcast", {value : nowPosVector});
 				}
 
 				prevTime = time;

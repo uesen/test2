@@ -11,11 +11,40 @@ app.get('/' , function(req, res){
     res.sendFile(__dirname+'/indexpmae.html');
 });
 
-io.on('connection',function(socket){
-        socket.on('client_to_server', function(data) {
+io.sockets.on('connection',function(socket){
+    /*
+        socket.on('client_to_server_broadcast', function(data) {
+        socket.broadcast.emit('server_to_client', {value : data.value});
+    //console.log(data);
+        });
+    
+    
+    */
+    
+/*
+    // S05. client_to_serverイベント・データを受信する
+    socket.on('client_to_server', function(data) {
+        // S06. server_to_clientイベント・データを送信する
         io.sockets.emit('server_to_client', {value : data.value});
     });
+    */
     
+    // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
+    socket.on('client_to_server_broadcast', function(data) {
+        socket.broadcast.emit('server_to_client', {value : data.value});
+    });
+    
+/*
+    */
+    
+    
+    
+    
+    
+    
+    
+    
+    //console.log('server listening. Port:' + PORT);
     /*
     socket.on('message',function(msg){
         console.log('message: ' + msg);
