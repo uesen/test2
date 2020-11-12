@@ -146,12 +146,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             
             var socket = io.connect();
     
-            socket.on("server_to_client", function(data){appendPos(data.value)});
-            function appendPos(vector) {
-                otherPosVector.x = vector.x
-                otherPosVector.y = vector.y
-                otherPosVector.z = vector.z
-            }
             
             
             /*
@@ -446,6 +440,13 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 					}
                     */
+                    socket.on("server_to_client", function(data){appendPos(data.value)});
+            function appendPos(vector) {
+                otherPosVector.x = vector.x
+                otherPosVector.y = vector.y
+                otherPosVector.z = vector.z
+            }
+            
                 socket.emit("client_to_server", {value : nowPosVector});
 				}
 
