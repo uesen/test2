@@ -1,22 +1,29 @@
-var express = require("express");
+var express = require('express');
 var app = express();
+var http = require('http').Server(app);
+const io = require('socket.io')(http);
+const PORT = process.env.PORT || 3000;
 
-var http = require('http');
-var socketio = require('socket.io')(http);//なんかHTTPたした
-var fs = require('fs');
+//app.use(express.static('/main.css'));
+app.use(express.static(__dirname));
 
-app.use(express.static(__dirname + '/js'));
+app.get('/' , function(req, res){
+    res.sendFile(__dirname+'/indexpmae.html');
+});
 
-var server = http.createServer(function(req, res) {
-    res.writeHead(200, {'Content-Type' : 'text/html'});
-    res.end(fs.readFileSync(__dirname + '/indexpmae.html', 'utf-8'));
-}).listen(process.env.PORT || 3000);  // ポート競合の場合は値を変更
- 
-
-var io = socketio.listen(server);
- 
-io.sockets.on('connection', function(socket) {
-    socket.on('client_to_server', function(data) {
+io.on('connection',function(socket){
+        socket.on('client_to_server', function(data) {
         io.sockets.emit('server_to_client', {value : data.value});
     });
+    
+    /*
+    socket.on('message',function(msg){
+        console.log('message: ' + msg);
+        io.emit('message', msg);
+    });
+    */
+});
+
+http.listen(PORT, function(){
+    console.log('server listening. Port:' + PORT);
 });
