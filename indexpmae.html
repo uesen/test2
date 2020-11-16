@@ -490,27 +490,19 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 					}
                     */
+                    setInterval(function(){
                     
                     socket.on("server_to_client", function(data){appendPos(data)});
                     
-                    function appendPos(info) {
-                        otherPosVector.x = info.value.x;
-                        otherPosVector.y = info.value.y;
-                        otherPosVector.z = info.value.z;
-                        otherPlayerInfo.con = info.value.con;
-                        otherPlayerInfo.exi = info.value.exi;
-                        
-                        //console.log(info);
-                        
-                        if(info.value.con == false)scene.__removeObject( otherPlayer );
-                        if(info.value.con == true)createElements();
-                    }
+                
                     console.log(otherPlayerInfo.exi);
                     playerInfo.x = nowPosVector.x;
                     playerInfo.y = nowPosVector.y;
                     playerInfo.z = nowPosVector.z;
             
                 socket.emit("client_to_server_broadcast", {value : playerInfo});
+                    
+                    },1000/3);
                     
                     
 				}
@@ -522,6 +514,19 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 
                 
 			}
+            
+            function appendPos(info) {
+                        otherPosVector.x = info.value.x;
+                        otherPosVector.y = info.value.y;
+                        otherPosVector.z = info.value.z;
+                        otherPlayerInfo.con = info.value.con;
+                        otherPlayerInfo.exi = info.value.exi;
+                        
+                        //console.log(info);
+                        
+                        if(info.value.con == false)scene.__removeObject( otherPlayer );
+                        if(info.value.con == true)createElements();
+                    }
 
 		</script>
 	</body>

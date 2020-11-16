@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
 var connectNum = 0;
 var disconnectNum = 0;
+var timer = null;
 
 var scketArr = [];
 
@@ -48,6 +49,8 @@ io.sockets.on('connection',function(socket){
     */
     
     // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
+    setInterval(function(){
+    
     socket.on('client_to_server_broadcast', function(data) {
         
         nowPlayerInfo.id = data.value.id;
@@ -59,6 +62,8 @@ io.sockets.on('connection',function(socket){
         console.log(data.value);
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
+        
+    },1000/3);
     
 /*
     */
