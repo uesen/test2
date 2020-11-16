@@ -479,7 +479,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     otherPlayerElement.position.z =  - otherPlayerInfoArr[0].z - 100;
                     }
                     
-                    console.log("info.con:"+otherPlayerInfoArr[0].con);
+                    //console.log("info.con:"+otherPlayerInfoArr[0].con);
                     
                     playerElement.rotation.x = nowRotVector.x;
                     //playerElement.rotation.y = nowRotVector.y;
@@ -513,7 +513,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     playerInfo.y = nowPosVector.y;
                     playerInfo.z = nowPosVector.z;
                     
-                    socket.on("server_to_client", function(data){appendVec(data)});
+                    socket.on("server_to_client", function(data){appendVec(data.value)});
                     
                     //console.log(otherPlayerInfo.exi);
                     //playerInfo.x = nowPosVector.x;
@@ -522,9 +522,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             
                     socket.emit("client_to_server_broadcast", {value : playerInfo});
                     
-                    console.log(apVec);
+                    //console.log(apVec);
                     
                     appendPos(apVec);
+                    
+                    console.log(apVec);
                     
                     
 				}
@@ -542,11 +544,22 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         ArrInfo = info;
                 var i = 0;
                 for(i = 0; i < ArrInfo.length; i++){
+                    console.log("最初Pos内"+i+"回目");
                     if(ArrInfo[i].id != playerInfo.id){
+                        
+                        if(ArrInfo[i].con == true && otherPlayerInfoArr[i].exi == false)createElements(i);
+                        
                         otherPlayerInfoArr[i].x = ArrInfo[i].x;
                         otherPlayerInfoArr[i].y = ArrInfo[i].y;
                         otherPlayerInfoArr[i].z = ArrInfo[i].z;
                         otherPlayerInfoArr[i].con = ArrInfo[i].con;
+                        
+                        if(otherPlayerInfoArr[i].con == true){
+                        otherPlayerElement.position.x = otherPlayerInfoArr[i].x;
+                        otherPlayerElement.position.y = otherPlayerInfoArr[i].y;
+                        otherPlayerElement.position.z =  - otherPlayerInfoArr[i].z - 100;
+                        }
+                    
                         //otherPlayerInfo.exi = info.value.exi;
                         /*
                         if(info.value[0].con == false){
@@ -556,7 +569,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         */
                         console.log("Pos内"+i+"回目");
                         console.log(ArrInfo[i]);
-                        if(ArrInfo[i].con == true && otherPlayerInfoArr[i].exi == false)createElements(i);
+                        
                     }
                 }
                 socket.emit("client_to_server_broadcast", {value : playerInfo});
