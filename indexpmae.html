@@ -527,13 +527,13 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         var ArrInfo = [];
                         ArrInfo = info;
                 
-                        //otherPlayerInfoArr[0].x = ArrInfo[0].x;
-                        //otherPlayerInfoArr[0].y = ArrInfo[0].y;
-                        //otherPlayerInfoArr[0].z = ArrInfo[0].z;
-                        //otherPlayerInfoArr[0].con = ArrInfo[0].con;
+                        otherPlayerInfoArr[0].x = ArrInfo[0].x;
+                        otherPlayerInfoArr[0].y = ArrInfo[0].y;
+                        otherPlayerInfoArr[0].z = ArrInfo[0].z;
+                        otherPlayerInfoArr[0].con = ArrInfo[0].con;
                         //otherPlayerInfo.exi = info.value.exi;
                         
-                        console.log("infovalueは" + info);
+                        //console.log("infovalueは" + info);
                 
                         /*
                         if(info.value[0].con == false){
@@ -541,7 +541,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                             scene.remove( selectedObject );
                         }
                         */
-                        //if(ArrInfo[0].con == true && otherPlayerInfoArr[0].exi == false)createElements();
+                        if(ArrInfo[0].con == true && otherPlayerInfoArr[0].exi == false)createElements();
                     }
 
 		</script>
