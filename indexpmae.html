@@ -157,6 +157,14 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 con: false
             };
             
+            var otherPlayerInfo = {
+                id: socket.id,
+                x: 0,
+                y: 0,
+                z: 0,
+                con: false
+            };
+            
             var PlayerInfoArr = [];
             
             
@@ -203,13 +211,23 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 scene.add( player );
                 //console.log(playerElement);
                 
+                socket.on("server_to_client", function(data){appendPos1(data.value)});
+                function appendPos1(info) {
+                        otherPosVector.x = info.x;
+                        otherPosVector.y = info.y;
+                        otherPosVector.z = info.z;
+                        otherPlayerInfo.con = info.con;
+                        if(info.con == true){
+                            
+                            scene.__removeObject( otherPlayer );
                 
-                otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPosVector.x, otherPosVector.y, otherPosVector.z, 
-                                              otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
-                
-                otherPlayer.add(otherPlayerElement);
-                    scene.add( otherPlayer );
-                
+                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPosVector.x, otherPosVector.y, otherPosVector.z, 
+                                                          otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
+
+                            otherPlayer.add(otherPlayerElement);
+                            scene.add( otherPlayer );
+                        }
+            }
                 //player.add( new Element( 'ufslsvJ3PhY', -nowPosVector.x, -nowPosVector.y, -nowPosVector.z, 0,    0,    0 , '480px', '270px') );
                 
                 
@@ -457,14 +475,21 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     
                     socket.on("server_to_client", function(data){appendPos(data.value)});
                     
-                    function appendPos(vector) {
-                        otherPosVector.x = vector.x
-                        otherPosVector.y = vector.y
-                        otherPosVector.z = vector.z
+                    function appendPos(info) {
+                        otherPosVector.x = info.x;
+                        otherPosVector.y = info.y;
+                        otherPosVector.z = info.z;
+                        otherPlayerInfo.con = info.con;
+                        if(info.con == false)scene.__removeObject( otherPlayer );
                     }
                     
+                    playerInfo.x = nowPosVector.x;
+                    playerInfo.y = nowPosVector.y;
+                    playerInfo.z = nowPosVector.z;
             
-                socket.emit("client_to_server_broadcast", {value : nowPosVector});
+                socket.emit("client_to_server_broadcast", {value : playerInfo});
+                    
+                    
 				}
 
 				prevTime = time;

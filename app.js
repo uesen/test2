@@ -4,8 +4,17 @@ var http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
 var connectNum = 0;
+var disconnectNum = 0;
 
 var scketArr = [];
+
+var nowPlayerInfo = {
+    id: '',
+    x: 0,
+    y: 0,
+    z: 0,
+    con: false
+};
 
 //app.use(express.static('/main.css'));
 app.use(express.static(__dirname));
@@ -17,6 +26,7 @@ app.get('/' , function(req, res){
 io.sockets.on('connection',function(socket){
     connectNum++;
     console.log(connectNum);
+    nowPlayerInfo.con = true;
     
     /*
         socket.on('client_to_server_broadcast', function(data) {
@@ -37,19 +47,19 @@ io.sockets.on('connection',function(socket){
     
     // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
     socket.on('client_to_server_broadcast', function(data) {
-        socket.broadcast.emit('server_to_client', {value : data.value});
+        
+        nowPlayerInfo.id = data.value.id;
+        nowPlayerInfo.x = data.value.x;
+        nowPlayerInfo.y = data.value.y;
+        nowPlayerInfo.z = data.value.z;
+        
+        
+        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo.value});
     });
     
 /*
     */
-    
-    
-    
-    
-    
-    
-    
-    
+
     //console.log('server listening. Port:' + PORT);
     /*
     socket.on('message',function(msg){
@@ -57,6 +67,12 @@ io.sockets.on('connection',function(socket){
         io.emit('message', msg);
     });
     */
+});
+
+io.sockets.on('disconnect', function(socket){
+        nowPlayerInfo.con = false;
+        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo.value});
+    
 });
 
 http.listen(PORT, function(){
