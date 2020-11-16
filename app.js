@@ -79,6 +79,7 @@ io.sockets.on('connection',function(socket){
         //console.log(socketArr);
         setInterval(function(){
         socket.broadcast.emit('server_to_client', socketArr);}, 1000/30);
+        socket.emit("ninzu", {value : connectNum});
     });
     
     socket.on('disconnect', function(){
