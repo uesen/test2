@@ -413,7 +413,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                             otherPlayerElement[i] = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[i].x, otherPlayerInfoArr[i].y, otherPlayerInfoArr[i].z, 
                                                           otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
 
-                            otherPlayer.add(otherPlayerElement);
+                            otherPlayer.add(otherPlayerElement[i]);
                             scene.add( otherPlayer );
                             otherPlayerInfoArr[i].exi = true
                         }
@@ -472,13 +472,13 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     playerElement.position.x = nowPosVector.x;
                     //playerElement.position.y = nowPosVector.y;
                     playerElement.position.z =  - nowPosVector.z - 100;
-                    
+                    /*
                     if(otherPlayerInfo.con == true){
                     otherPlayerElement.position.x = otherPlayerInfoArr[0].x;
                     otherPlayerElement.position.y = otherPlayerInfoArr[0].y;
                     otherPlayerElement.position.z =  - otherPlayerInfoArr[0].z - 100;
                     }
-                    
+                    */
                     //console.log("info.con:"+otherPlayerInfoArr[0].con);
                     
                     playerElement.rotation.x = nowRotVector.x;
@@ -557,9 +557,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         otherPlayerInfoArr[i].con = ArrInfo[i].con;
                         
                         if(otherPlayerInfoArr[i].con == true){
-                        otherPlayerElement.position.x = otherPlayerInfoArr[i].x;
-                        otherPlayerElement.position.y = otherPlayerInfoArr[i].y;
-                        otherPlayerElement.position.z =  - otherPlayerInfoArr[i].z - 100;
+                        otherPlayerElement[i].position.x = otherPlayerInfoArr[i].x;
+                        otherPlayerElement[i].position.y = otherPlayerInfoArr[i].y;
+                        otherPlayerElement[i].position.z =  - otherPlayerInfoArr[i].z - 100;
                         }
                     
                         //otherPlayerInfo.exi = info.value.exi;
