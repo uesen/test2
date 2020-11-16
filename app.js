@@ -68,7 +68,7 @@ io.sockets.on('connection',function(socket){
             if (socketArr[i].id == data.value.id) {
                 socketArr[i] = data.value;
                 flg = false;
-                console.log(i+"までは行けてます")
+                //console.log(i+"までは行けてます")
             }
         }
         if (flg) {
@@ -78,8 +78,9 @@ io.sockets.on('connection',function(socket){
         //console.log(nowPlayerInfo.exi);
         //console.log(socketArr);
         setInterval(function(){
-        socket.broadcast.emit('server_to_client', socketArr);}, 1000/30);
+        socket.broadcast.emit('server_to_client', socketArr);
         socket.emit("ninzu", {value : connectNum});
+            }, 1000/30);
     });
     
     socket.on('disconnect', function(){
