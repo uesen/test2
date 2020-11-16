@@ -43,6 +43,12 @@ io.sockets.on('connection',function(socket){
     
     
     */
+    /*
+    socket.on('client_to_server', function(data) {
+        // S06. server_to_clientイベント・データを送信する
+        //io.sockets.emit('ninzu', {value : data.value});
+    });
+    */
     
 /*
     // S05. client_to_serverイベント・データを受信する
@@ -79,8 +85,11 @@ io.sockets.on('connection',function(socket){
         //console.log(socketArr);
         setInterval(function(){
         socket.broadcast.emit('server_to_client', socketArr);
-        io.sockets.emit("ninzu", {value : connectNum});
+        //io.sockets.emit("ninzu", {value : connectNum});
             }, 1000/30);
+        
+        
+        
     });
     
     socket.on('disconnect', function(){
@@ -88,7 +97,7 @@ io.sockets.on('connection',function(socket){
         nowPlayerInfo.con = false;
         nowPlayerInfo.exi = false;
         disconnectNum++;
-        //socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
+        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     
 });
         

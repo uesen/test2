@@ -500,12 +500,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     
                     
                     socket.on("server_to_client", function(data){appendPos(data)});
-                    socket.on("ninzu", function(data){appendNinzo(data)});
-                    
+                    //socket.on("ninzu", function(data){appendNinzo(data)});
+                    /*
                     function appendNinzo(data){
                         conPlayNum = data;
                     }
-                
+                */
                     //console.log(otherPlayerInfo.exi);
                     playerInfo.x = nowPosVector.x;
                     playerInfo.y = nowPosVector.y;
@@ -529,7 +529,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             function appendPos(info) {
                         var ArrInfo = [];
                         ArrInfo = info;
-                for(var i = 0; i < conPlayNum; i++){
+                for(var i = 0; i < ArrInfo.length; i++){
                     if(ArrInfo[i].id != playerInfo.id){
                         otherPlayerInfoArr[i].x = ArrInfo[i].x;
                         otherPlayerInfoArr[i].y = ArrInfo[i].y;
