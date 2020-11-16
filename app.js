@@ -7,7 +7,7 @@ var connectNum = 0;
 var disconnectNum = 0;
 var timer = null;
 
-var scketArr = [];
+var socketArr = [];
 
 var nowPlayerInfo = {
     id: '',
