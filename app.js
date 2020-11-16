@@ -77,7 +77,7 @@ io.sockets.on('connection',function(socket){
         
         //console.log(nowPlayerInfo.exi);
         //console.log(data.value);
-        socket.broadcast.emit('server_to_client', {socketArr});
+        socket.broadcast.emit('server_to_client', {value:socketArr});
     });
     
     socket.on('disconnect', function(){
