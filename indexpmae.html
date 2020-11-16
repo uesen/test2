@@ -95,6 +95,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             
             var apVec = [];
             
+            var exiArr = [];
+            for(var i = 0; i < 1000, i++)exiArr = false;
+            
             //var playerElement;
             
             var conPlayNum = 1;
@@ -408,14 +411,14 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			}
             
             function createElements(i){
-                if(otherPlayerInfoArr[i].exi == false){
+                if(exiArr[i] == false){
                 
                             otherPlayerElement[i] = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[i].x, otherPlayerInfoArr[i].y, otherPlayerInfoArr[i].z, 
                                                           otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
 
                             otherPlayer.add(otherPlayerElement[i]);
                             scene.add( otherPlayer );
-                            otherPlayerInfoArr[i].exi = true
+                            exiArr[i] = true
                         }
                 
             }
@@ -547,7 +550,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     
                     if(ArrInfo[i].id != playerInfo.id){
                         
-                        if(ArrInfo[i].con == true && otherPlayerInfoArr[i].exi == false)createElements(i);
+                        if(ArrInfo[i].con == true && exiArr[i] == false)createElements(i);
                         
                         otherPlayerInfoArr[i]　= otherPlayerInfo;
                         

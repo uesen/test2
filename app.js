@@ -79,9 +79,9 @@ io.on('connection',function(socket){
         //console.log(socketArr);
         console.log(connectNum);
         
-        setInterval(function(){
+        //setInterval(function(){
         socket.broadcast.emit('server_to_client', {value :socketArr});
-            }, 1000/30);
+           // }, 1000/30);
         
     });
     
