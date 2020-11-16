@@ -59,15 +59,16 @@ io.sockets.on('connection',function(socket){
         nowPlayerInfo.y = data.value.y;
         nowPlayerInfo.z = data.value.z;
         
-        var i = 0, max;
-        for (i = 0, max = connectNum; i < max; i++) {
+        var flg = true;
+        var i = 0;
+        for (i = 0; i < connectNum; i++) {
             if (socketArr[i].id == data.value.id) {
                 socketArr[i] = data.value;
                 flg = false;
             }
         }
         if (flg) {
-            socketArr.push(info);
+            socketArr.push(data);
         }
         
         //console.log(nowPlayerInfo.exi);
