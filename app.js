@@ -18,7 +18,16 @@ var nowPlayerInfo = {
     con: false
 };
 
-socketArr[0] = nowPlayerInfo;
+var nonPlayerInfo = {
+    id: '',
+    x: 0,
+    y: 0,
+    z: 0,
+    exi: false,
+    con: false
+};
+
+socketArr[0] = nonPlayerInfo;
 
 
 //app.use(express.static('/main.css'));
@@ -33,44 +42,20 @@ io.sockets.on('connection',function(socket){
     console.log(connectNum);
     nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
-    socketArr[connectNum] = nowPlayerInfo;
-    
-    /*
-        socket.on('client_to_server_broadcast', function(data) {
-        socket.broadcast.emit('server_to_client', {value : data.value});
-    //console.log(data);
-        });
-    
-    
-    */
-    /*
-    socket.on('client_to_server', function(data) {
-        // S06. server_to_clientイベント・データを送信する
-        //io.sockets.emit('ninzu', {value : data.value});
-    });
-    */
-    
-/*
-    // S05. client_to_serverイベント・データを受信する
-    socket.on('client_to_server', function(data) {
-        // S06. server_to_clientイベント・データを送信する
-        io.sockets.emit('server_to_client', {value : data.value});
-    });
-    */
-    
+    socketArr[connectNum] = nonPlayerInfo;
     // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
     
     
     socket.on('client_to_server_broadcast', function(data) {
-        
+        /*
         nowPlayerInfo.id = data.value.id;
         nowPlayerInfo.x = data.value.x;
         nowPlayerInfo.y = data.value.y;
         nowPlayerInfo.z = data.value.z;
-        
+        */
         var flg = true;
         var i = 0;
-        for (i = 0; i < connectNum; i++) {
+        for (i = 0; i < socketArr.length; i++) {
             if (socketArr[i].id == data.value.id) {
                 socketArr[i] = data.value;
                 flg = false;
@@ -86,10 +71,7 @@ io.sockets.on('connection',function(socket){
         //console.log(socketArr);
         setInterval(function(){
         socket.broadcast.emit('server_to_client', socketArr);
-        //io.sockets.emit("ninzu", {value : connectNum});
             }, 1000/30);
-        
-        
         
     });
     
@@ -98,7 +80,7 @@ io.sockets.on('connection',function(socket){
         nowPlayerInfo.con = false;
         nowPlayerInfo.exi = false;
         disconnectNum++;
-        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
+        //socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     
 });
         
