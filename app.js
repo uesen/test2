@@ -54,7 +54,7 @@ io.sockets.on('connection',function(socket){
         nowPlayerInfo.z = data.value.z;
         
         
-        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo.value});
+        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
     
 /*
