@@ -213,6 +213,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 scene.add( player );
                 //console.log(playerElement);
                 
+                /*
                 socket.on("server_to_client", function(data){appendPos1(data)});
                 function appendPos1(info) {
                         otherPosVector.x = info.x;
@@ -230,6 +231,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                             scene.add( otherPlayer );
                         }
             }
+            */
                 //player.add( new Element( 'ufslsvJ3PhY', -nowPosVector.x, -nowPosVector.y, -nowPosVector.z, 0,    0,    0 , '480px', '270px') );
                 
                 
@@ -492,16 +494,16 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     socket.on("server_to_client", function(data){appendPos(data)});
                     
                     function appendPos(info) {
-                        otherPosVector.x = info.x;
-                        otherPosVector.y = info.y;
-                        otherPosVector.z = info.z;
-                        otherPlayerInfo.con = info.con;
-                        otherPlayerInfo.exi = info.exi;
+                        otherPosVector.x = info.value.x;
+                        otherPosVector.y = info.value.y;
+                        otherPosVector.z = info.value.z;
+                        otherPlayerInfo.con = info.value.con;
+                        otherPlayerInfo.exi = info.value.exi;
                         
-                        console.log(info);
+                        //console.log(info);
                         
-                        if(info.con == false)scene.__removeObject( otherPlayer );
-                        if(info.con == true)createElements();
+                        if(info.value.con == false)scene.__removeObject( otherPlayer );
+                        if(info.value.con == true)createElements();
                     }
                     console.log(otherPlayerInfo.exi);
                     playerInfo.x = nowPosVector.x;
