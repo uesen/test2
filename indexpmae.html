@@ -154,6 +154,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 x: 0,
                 y: 0,
                 z: 0,
+                exi: true,
                 con: true
             };
             
@@ -162,6 +163,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 x: 0,
                 y: 0,
                 z: 0,
+                exi: true,
                 con: false
             };
             
@@ -395,6 +397,21 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 //controls.handleResize();
 
 			}
+            
+            function createElements(){
+                if(info.exi == true){
+                            
+                            scene.__removeObject( otherPlayer );
+                
+                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPosVector.x, otherPosVector.y, otherPosVector.z, 
+                                                          otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
+
+                            otherPlayer.add(otherPlayerElement);
+                            scene.add( otherPlayer );
+                            exi = false
+                        }
+                
+            }
 
             
             
@@ -482,6 +499,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         otherPosVector.z = info.z;
                         otherPlayerInfo.con = info.con;
                         if(info.con == false)scene.__removeObject( otherPlayer );
+                        if(info.con == true)createElements();
                     }
                     
                     playerInfo.x = nowPosVector.x;
