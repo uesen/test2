@@ -18,6 +18,7 @@ var nowPlayerInfo = {
     con: false
 };
 
+socketArr[0] = nowPlayerInfo;
 
 
 //app.use(express.static('/main.css'));
