@@ -95,6 +95,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             
             //var playerElement;
             
+            var conPlayNum = 1;
+        
+            
             let nowPosVector = new THREE.Vector3(0,0,0);
             let nowRotVector = new THREE.Vector3(0,0,-1);
             var player = new THREE.Group();
@@ -146,6 +149,15 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             
             var socket = io.connect();
     
+            var playerInfo = {
+                id: socket.id,
+                x: 0,
+                y: 0,
+                z: 0,
+                con: false
+            };
+            
+            var PlayerInfoArr = [];
             
             
             /*
@@ -366,6 +378,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 			}
 
+            
+            
 			function animate() {
                 
 				requestAnimationFrame( animate );
@@ -443,11 +457,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     
                     socket.on("server_to_client", function(data){appendPos(data.value)});
                     
-            function appendPos(vector) {
-                otherPosVector.x = vector.x
-                otherPosVector.y = vector.y
-                otherPosVector.z = vector.z
-            }
+                    function appendPos(vector) {
+                        otherPosVector.x = vector.x
+                        otherPosVector.y = vector.y
+                        otherPosVector.z = vector.z
+                    }
+                    
             
                 socket.emit("client_to_server_broadcast", {value : nowPosVector});
 				}

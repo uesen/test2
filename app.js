@@ -3,6 +3,9 @@ var app = express();
 var http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
+var connectNum = 0;
+
+var scketArr = [];
 
 //app.use(express.static('/main.css'));
 app.use(express.static(__dirname));
@@ -12,6 +15,9 @@ app.get('/' , function(req, res){
 });
 
 io.sockets.on('connection',function(socket){
+    connectNum++;
+    console.log(connectNum);
+    
     /*
         socket.on('client_to_server_broadcast', function(data) {
         socket.broadcast.emit('server_to_client', {value : data.value});
