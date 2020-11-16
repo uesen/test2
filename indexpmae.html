@@ -474,13 +474,13 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 					}
                     */
                     
-                    socket.on("server_to_client", function(data){appendPos(data.value)});
+                    socket.on("server_to_client", function(data){appendPos(data)});
                     
                     function appendPos(info) {
-                        otherPosVector.x = info.value.x;
-                        otherPosVector.y = info.value.y;
-                        otherPosVector.z = info.value.z;
-                        otherPlayerInfo.con = info.value.con;
+                        otherPosVector.x = info.x;
+                        otherPosVector.y = info.y;
+                        otherPosVector.z = info.z;
+                        otherPlayerInfo.con = info.con;
                         if(info.con == false)scene.__removeObject( otherPlayer );
                     }
                     
