@@ -527,7 +527,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         //console.log(info);
                         
                         if(info.value.con == false){
-                            var selectedObject = scene.getObjectByName(otherPlayer.name);
+                            var selectedObject = scene.getObjectByName(otherPlayerElement.name);//kaeru
                             scene.remove( selectedObject );
                         }
                         if(info.value.con == true && otherPlayerInfo.exi == false)createElements();
