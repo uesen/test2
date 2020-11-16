@@ -68,7 +68,7 @@ io.sockets.on('connection',function(socket){
             }
         }
         if (flg) {
-            socketArr.push(data);
+            socketArr.push(data.value);
         }
         
         //console.log(nowPlayerInfo.exi);
