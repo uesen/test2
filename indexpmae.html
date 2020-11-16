@@ -467,9 +467,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     playerElement.position.z =  - nowPosVector.z - 100;
                     
                     if(otherPlayerInfo.con == true){
-                    //otherPlayerElement.position.x = otherPosVector.x;
+                    otherPlayerElement.position.x = otherPosVector.x;
                     //otherPlayerElement.position.y = otherPosVector.y;////////////ここ大事
-                    //otherPlayerElement.position.z =  - otherPosVector.z - 100;
+                    otherPlayerElement.position.z =  - otherPosVector.z - 100;
                     }
                     
                     playerElement.rotation.x = nowRotVector.x;
@@ -524,7 +524,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         
                         //console.log(info);
                         
-                        //if(info.value.con == false)scene.__removeObject( otherPlayer );
+                        if(info.value.con == false)scene.__removeObject( otherPlayer );
                         if(info.value.con == true && otherPlayerInfo.exi == false)createElements();
                     }
 
