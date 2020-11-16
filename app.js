@@ -13,6 +13,7 @@ var nowPlayerInfo = {
     x: 0,
     y: 0,
     z: 0,
+    exi: false,
     con: false
 };
 
@@ -27,6 +28,7 @@ io.sockets.on('connection',function(socket){
     connectNum++;
     console.log(connectNum);
     nowPlayerInfo.con = true;
+    nowPlayerInfo.exi = true;
     
     /*
         socket.on('client_to_server_broadcast', function(data) {
