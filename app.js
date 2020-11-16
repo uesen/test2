@@ -29,7 +29,7 @@ io.sockets.on('connection',function(socket){
     connectNum++;
     console.log(connectNum);
     nowPlayerInfo.con = true;
-    nowPlayerInfo.exi = true;
+    //nowPlayerInfo.exi = true;
     
     /*
         socket.on('client_to_server_broadcast', function(data) {
@@ -79,6 +79,7 @@ io.sockets.on('connection',function(socket){
 
 io.sockets.on('disconnect', function(socket){
         nowPlayerInfo.con = false;
+        nowPlayerInfo.exi = false;
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     
 });
