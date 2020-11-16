@@ -54,7 +54,7 @@ io.on('connection',function(socket){
     //nowPlayerInfo.exi = true;
     socketArr[connectNum] = nonPlayerInfo;
     
-    socket.on('client_to_server', function(data) {
+    socket.on('client_to_server_broadcast', function(data) {
         /*
         nowPlayerInfo.id = data.value.id;
         nowPlayerInfo.x = data.value.x;
