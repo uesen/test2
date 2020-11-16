@@ -46,7 +46,7 @@ io.sockets.on('connection',function(socket){
     // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
     
     
-    socket.on('client_to_server_broadcast', function(data) {
+    socket.on('client_to_server', function(data) {
         /*
         nowPlayerInfo.id = data.value.id;
         nowPlayerInfo.x = data.value.x;
@@ -70,7 +70,7 @@ io.sockets.on('connection',function(socket){
         //console.log(nowPlayerInfo.exi);
         console.log(socketArr);
         setInterval(function(){
-        socket.broadcast.emit('server_to_client', socketArr);
+        io.sockets.emit('server_to_client', {value :socketArr});
             }, 1000/30);
         
     });
