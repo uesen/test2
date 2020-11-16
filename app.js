@@ -27,7 +27,7 @@ var nonPlayerInfo = {
     con: false
 };
 */
-socketArr[0] = nonPlayerInfo;
+//socketArr[0] = nonPlayerInfo;
 
 
 //app.use(express.static('/main.css'));
@@ -39,7 +39,7 @@ app.get('/' , function(req, res){
 
 io.sockets.on('connection',function(socket){
     connectNum++;
-    console.log(connectNum);
+    
     
     var nonPlayerInfo = {
     id: socket.id,
@@ -77,7 +77,7 @@ io.sockets.on('connection',function(socket){
         
         //console.log(nowPlayerInfo.exi);
         console.log(socketArr);
-        
+        console.log(connectNum);
         
         setInterval(function(){
         io.sockets.emit('server_to_client', {value :socketArr});
