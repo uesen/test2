@@ -55,7 +55,7 @@ io.sockets.on('connection',function(socket){
         nowPlayerInfo.y = data.y;
         nowPlayerInfo.z = data.z;
         
-        
+        console.log(nowPlayerInfo.exi);
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
     

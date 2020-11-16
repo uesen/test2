@@ -400,15 +400,13 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             
             function createElements(){
                 if(otherPlayerInfo.exi == true){
-                            
-                            scene.__removeObject( otherPlayer );
                 
                             otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPosVector.x, otherPosVector.y, otherPosVector.z, 
                                                           otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
 
                             otherPlayer.add(otherPlayerElement);
                             scene.add( otherPlayer );
-                            exi = false
+                            otherPlayerInfo.exi = false
                         }
                 
             }
@@ -500,10 +498,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         otherPlayerInfo.con = info.con;
                         otherPlayerInfo.exi = info.exi;
                         
+                        console.log(info.con);
+                        
                         if(info.con == false)scene.__removeObject( otherPlayer );
                         if(info.con == true)createElements();
                     }
-                    
+                    console.log(otherPlayerInfo.exi);
                     playerInfo.x = nowPosVector.x;
                     playerInfo.y = nowPosVector.y;
                     playerInfo.z = nowPosVector.z;
