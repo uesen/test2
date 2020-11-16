@@ -107,7 +107,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             let otherPosVector = new THREE.Vector3(0,0,0);
             let otherRotVector = new THREE.Vector3(0,0,-1);
             var otherPlayer = new THREE.Group();
-            var otherPlayerElement;
+            var otherPlayerElement = [];
             
             const objects = [];
             
@@ -410,12 +410,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             function createElements(i){
                 if(otherPlayerInfoArr[i].exi == false){
                 
-                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[i].x, otherPlayerInfoArr[i].y, otherPlayerInfoArr[i].z, 
+                            otherPlayerElement[i] = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[i].x, otherPlayerInfoArr[i].y, otherPlayerInfoArr[i].z, 
                                                           otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
 
                             otherPlayer.add(otherPlayerElement);
                             scene.add( otherPlayer );
-                            otherPlayerInfo.exi = true
+                            otherPlayerInfoArr[i].exi = true
                         }
                 
             }
@@ -544,7 +544,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         ArrInfo = info;
                 var i = 0;
                 for(i = 0; i < ArrInfo.length; i++){
-                    console.log("最初Pos内"+i+"回目");
+                    
                     if(ArrInfo[i].id != playerInfo.id){
                         
                         if(ArrInfo[i].con == true && otherPlayerInfoArr[i].exi == false)createElements(i);

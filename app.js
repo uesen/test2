@@ -47,7 +47,7 @@ io.on('connection',function(socket){
     y: 0,
     z: 0,
     exi: false,
-    con: false
+    con: true
 };
     
     nowPlayerInfo.con = true;
@@ -87,8 +87,8 @@ io.on('connection',function(socket){
     
     socket.on('disconnect', function(){
     console.log("消えてました");
-        nowPlayerInfo.con = false;
-        nowPlayerInfo.exi = false;
+        //nowPlayerInfo.con = false;
+        //nowPlayerInfo.exi = false;
         disconnectNum++;
         //socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     
