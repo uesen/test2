@@ -18,6 +18,8 @@ var nowPlayerInfo = {
     con: false
 };
 
+
+
 //app.use(express.static('/main.css'));
 app.use(express.static(__dirname));
 
@@ -30,7 +32,7 @@ io.sockets.on('connection',function(socket){
     //console.log(connectNum);
     nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
-    socketArr[connectNum].con = true;
+    //socketArr[connectNum] = nowPlayerInfo;
     
     /*
         socket.on('client_to_server_broadcast', function(data) {
