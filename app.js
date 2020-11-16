@@ -77,6 +77,7 @@ io.sockets.on('connection',function(socket){
                 //console.log(i+"までは行けてます")
             }
         }
+        
         if (flg) {
             socketArr.push(data.value);
         }
