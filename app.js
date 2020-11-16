@@ -68,6 +68,7 @@ io.sockets.on('connection',function(socket){
             if (socketArr[i].id == data.value.id) {
                 socketArr[i] = data.value;
                 flg = false;
+                console.log(i+"までは行けてます")
             }
         }
         if (flg) {
@@ -76,7 +77,7 @@ io.sockets.on('connection',function(socket){
         
         //console.log(nowPlayerInfo.exi);
         //console.log(data.value);
-        socket.broadcast.emit('server_to_client', {value : socketArr});
+        socket.broadcast.emit('server_to_client', {socketArr});
     });
     
     socket.on('disconnect', function(){
