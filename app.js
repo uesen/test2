@@ -30,7 +30,7 @@ app.get('/' , function(req, res){
 
 io.sockets.on('connection',function(socket){
     connectNum++;
-    //console.log(connectNum);
+    console.log(connectNum);
     nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
     socketArr[connectNum] = nowPlayerInfo;
