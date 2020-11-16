@@ -507,14 +507,16 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     function appendNinzo(data){
                         conPlayNum = data;
                     }
-                */
+                */playerInfo.x = nowPosVector.x;
+                    playerInfo.y = nowPosVector.y;
+                    playerInfo.z = nowPosVector.z;
                     
                     socket.on("server_to_client", function(data){appendVec(data)});
                     
                     //console.log(otherPlayerInfo.exi);
-                    playerInfo.x = nowPosVector.x;
-                    playerInfo.y = nowPosVector.y;
-                    playerInfo.z = nowPosVector.z;
+                    //playerInfo.x = nowPosVector.x;
+                    //playerInfo.y = nowPosVector.y;
+                    //playerInfo.z = nowPosVector.z;
             
                     socket.emit("client_to_server_broadcast", {value : playerInfo});
 
@@ -550,6 +552,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         if(ArrInfo[i].con == true && otherPlayerInfoArr[i].exi == false)createElements(i);
                     }
                 }
+                socket.emit("client_to_server_broadcast", {value : playerInfo});
             }
             
             function appendVec(data){
