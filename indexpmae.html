@@ -525,7 +525,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             
             function appendPos(info) {
                         var ArrInfo = [];
-                        ArrInfo = info.value;
+                        ArrInfo = info;
                 
                         //otherPlayerInfoArr[0].x = ArrInfo[0].x;
                         //otherPlayerInfoArr[0].y = ArrInfo[0].y;
@@ -533,12 +533,14 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         //otherPlayerInfoArr[0].con = ArrInfo[0].con;
                         //otherPlayerInfo.exi = info.value.exi;
                         
-                        console.log("infovalueは" + info.value);
-                        
+                        console.log("infovalueは" + info);
+                
+                        /*
                         if(info.value[0].con == false){
                             var selectedObject = scene.getObjectByName(otherPlayer);
                             scene.remove( selectedObject );
                         }
+                        */
                         //if(ArrInfo[0].con == true && otherPlayerInfoArr[0].exi == false)createElements();
                     }
 
