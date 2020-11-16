@@ -50,13 +50,13 @@ io.sockets.on('connection',function(socket){
     // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
     socket.on('client_to_server_broadcast', function(data) {
         
-        nowPlayerInfo.id = data.id;
-        nowPlayerInfo.x = data.x;
-        nowPlayerInfo.y = data.y;
-        nowPlayerInfo.z = data.z;
+        nowPlayerInfo.id = data.value.id;
+        nowPlayerInfo.x = data.value.x;
+        nowPlayerInfo.y = data.value.y;
+        nowPlayerInfo.z = data.value.z;
         
         console.log(nowPlayerInfo.exi);
-        console.log(data);
+        console.log(data.value);
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
     
