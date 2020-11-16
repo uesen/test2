@@ -68,7 +68,7 @@ io.sockets.on('connection',function(socket){
         }
         
         //console.log(nowPlayerInfo.exi);
-        //console.log(socketArr);
+        console.log(socketArr);
         setInterval(function(){
         socket.broadcast.emit('server_to_client', socketArr);
             }, 1000/30);
