@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
-var connectNum = 0;
+var connectNum = -1;
 var disconnectNum = 0;
 var timer = null;
 
