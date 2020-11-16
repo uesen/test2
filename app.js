@@ -94,18 +94,7 @@ io.sockets.on('connection',function(socket){
     
 });
         
-    
-    
-/*
-    */
 
-    //console.log('server listening. Port:' + PORT);
-    /*
-    socket.on('message',function(msg){
-        console.log('message: ' + msg);
-        io.emit('message', msg);
-    });
-    */
 });
 
 

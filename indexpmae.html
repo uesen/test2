@@ -93,6 +93,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             var nowPos = [];
             let raycaster;
             
+            var apVec;
+            
             //var playerElement;
             
             var conPlayNum = 1;
@@ -514,9 +516,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     socket.emit("client_to_server", {value : playerInfo});
                     
                     
-                    socket.on("server_to_client", function(data){appendPos(data)});
+                    socket.on("server_to_client", function(data){appendVec(data)});
                     
-                    
+                    appendPos(apVec);
                     
                     
 				}
@@ -548,6 +550,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         if(ArrInfo[i].con == true && otherPlayerInfoArr[i].exi == false)createElements(i);
                     }
                 }
+            }
+            
+            function appendVec(data){
+                apVec = data;
+                
             }
 
 		</script>
