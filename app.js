@@ -37,7 +37,7 @@ app.get('/' , function(req, res){
     res.sendFile(__dirname+'/indexpmae.html');
 });
 
-io.sockets.on('connection',function(socket){
+io.on('connection',function(socket){
     connectNum++;
     
     
