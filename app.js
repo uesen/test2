@@ -77,7 +77,7 @@ io.on('connection',function(socket){
         
         //console.log(nowPlayerInfo.exi);
         //console.log(socketArr);
-        //console.log(connectNum);
+        console.log(connectNum);
         
         setInterval(function(){
         socket.broadcast.emit('server_to_client', {value :socketArr});
