@@ -213,10 +213,10 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 
                 socket.on("server_to_client", function(data){appendPos1(data.value)});
                 function appendPos1(info) {
-                        otherPosVector.x = info.x;
-                        otherPosVector.y = info.y;
-                        otherPosVector.z = info.z;
-                        otherPlayerInfo.con = info.con;
+                        otherPosVector.x = info.value.x;
+                        otherPosVector.y = info.value.y;
+                        otherPosVector.z = info.value.z;
+                        otherPlayerInfo.con = info.value.con;
                         if(info.con == true){
                             
                             scene.__removeObject( otherPlayer );
