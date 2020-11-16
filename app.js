@@ -63,7 +63,7 @@ io.sockets.on('connection',function(socket){
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
     
-    sockets.on('disconnect', function(){
+    socket.on('disconnect', function(){
     console.log("消えてました");
         nowPlayerInfo.con = false;
         nowPlayerInfo.exi = false;
