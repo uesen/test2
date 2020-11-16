@@ -17,7 +17,7 @@ var nowPlayerInfo = {
     exi: false,
     con: false
 };
-
+/*
 var nonPlayerInfo = {
     id: '',
     x: 0,
@@ -26,7 +26,7 @@ var nonPlayerInfo = {
     exi: false,
     con: false
 };
-
+*/
 socketArr[0] = nonPlayerInfo;
 
 
@@ -40,11 +40,19 @@ app.get('/' , function(req, res){
 io.sockets.on('connection',function(socket){
     connectNum++;
     console.log(connectNum);
+    
+    var nonPlayerInfo = {
+    id: socket.id,
+    x: 0,
+    y: 0,
+    z: 0,
+    exi: false,
+    con: false
+};
+    
     nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
     socketArr[connectNum] = nonPlayerInfo;
-    // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
-    
     
     socket.on('client_to_server', function(data) {
         /*
@@ -64,11 +72,13 @@ io.sockets.on('connection',function(socket){
         }
         
         if (flg) {
-            socketArr.push(data.value);
+            socketArr.push(data);
         }
         
         //console.log(nowPlayerInfo.exi);
         console.log(socketArr);
+        
+        
         setInterval(function(){
         io.sockets.emit('server_to_client', {value :socketArr});
             }, 1000/30);
