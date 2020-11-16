@@ -80,7 +80,7 @@ io.sockets.on('connection',function(socket){
         //console.log(connectNum);
         
         setInterval(function(){
-        io.sockets.emit('server_to_client', {value :socketArr});
+        socket.broadcast.emit('server_to_client', {value :socketArr});
             }, 1000/30);
         
     });
