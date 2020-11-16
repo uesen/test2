@@ -76,8 +76,8 @@ io.sockets.on('connection',function(socket){
         }
         
         //console.log(nowPlayerInfo.exi);
-        console.log(socketArr);
-        console.log(connectNum);
+        //console.log(socketArr);
+        //console.log(connectNum);
         
         setInterval(function(){
         io.sockets.emit('server_to_client', {value :socketArr});
