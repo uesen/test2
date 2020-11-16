@@ -96,7 +96,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             //var playerElement;
             
             var conPlayNum = 1;
-        
             
             let nowPosVector = new THREE.Vector3(0,0,0);
             let nowRotVector = new THREE.Vector3(0,0,-1);
@@ -406,10 +405,10 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 			}
             
-            function createElements(){
-                if(otherPlayerInfoArr[0].exi == false){
+            function createElements(i){
+                if(otherPlayerInfoArr[i].exi == false){
                 
-                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[0].x, otherPlayerInfoArr[0].y, otherPlayerInfoArr[0].z, 
+                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[i].x, otherPlayerInfoArr[i].y, otherPlayerInfoArr[i].z, 
                                                           otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
 
                             otherPlayer.add(otherPlayerElement);
@@ -501,7 +500,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     
                     
                     socket.on("server_to_client", function(data){appendPos(data)});
+                    socket.on("ninzo", function(data){appendNinzo(data)});
                     
+                    function appendNinzo(data){
+                        conPlayNum = data;
+                    }
                 
                     //console.log(otherPlayerInfo.exi);
                     playerInfo.x = nowPosVector.x;
@@ -526,11 +529,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             function appendPos(info) {
                         var ArrInfo = [];
                         ArrInfo = info;
-                
-                        otherPlayerInfoArr[0].x = ArrInfo[0].x;
-                        otherPlayerInfoArr[0].y = ArrInfo[0].y;
-                        otherPlayerInfoArr[0].z = ArrInfo[0].z;
-                        otherPlayerInfoArr[0].con = ArrInfo[0].con;
+                for(i = 0; i < conPlayNum; i++){
+                        otherPlayerInfoArr[i].x = ArrInfo[i].x;
+                        otherPlayerInfoArr[i].y = ArrInfo[i].y;
+                        otherPlayerInfoArr[i].z = ArrInfo[i].z;
+                        otherPlayerInfoArr[i].con = ArrInfo[i].con;
                         //otherPlayerInfo.exi = info.value.exi;
                         
                         //console.log("infovalueは" + info);
@@ -541,8 +544,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                             scene.remove( selectedObject );
                         }
                         */
-                        if(ArrInfo[0].con == true && otherPlayerInfoArr[0].exi == false)createElements();
+                        if(ArrInfo[i].con == true && otherPlayerInfoArr[i].exi == false)createElements(i);
                     }
+            }
 
 		</script>
 	</body>
