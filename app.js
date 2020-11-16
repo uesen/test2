@@ -33,7 +33,7 @@ io.sockets.on('connection',function(socket){
     //console.log(connectNum);
     nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
-    //socketArr[connectNum] = nowPlayerInfo;
+    socketArr[connectNum] = nowPlayerInfo;
     
     /*
         socket.on('client_to_server_broadcast', function(data) {
