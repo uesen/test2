@@ -526,7 +526,10 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         
                         //console.log(info);
                         
-                        if(info.value.con == false)renderer.cameraElement.removeChild( otherPlayer.element );
+                        if(info.value.con == false){
+                            var selectedObject = scene.getObjectByName(otherPlayer.name);
+                            scene.remove( selectedObject );
+                        }
                         if(info.value.con == true && otherPlayerInfo.exi == false)createElements();
                     }
 
