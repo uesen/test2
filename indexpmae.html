@@ -527,19 +527,19 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         var ArrInfo = [];
                         ArrInfo = info.value;
                 
-                        otherPlayerInfoArr[0].x = ArrInfo[0].x;
-                        otherPlayerInfoArr[0].y = ArrInfo[0].y;
-                        otherPlayerInfoArr[0].z = ArrInfo[0].z;
-                        otherPlayerInfoArr[0].con = ArrInfo[0].con;
+                        //otherPlayerInfoArr[0].x = ArrInfo[0].x;
+                        //otherPlayerInfoArr[0].y = ArrInfo[0].y;
+                        //otherPlayerInfoArr[0].z = ArrInfo[0].z;
+                        //otherPlayerInfoArr[0].con = ArrInfo[0].con;
                         //otherPlayerInfo.exi = info.value.exi;
                         
-                        //console.log(info);
+                        console.log("infovalueは" + info.value);
                         
                         if(info.value[0].con == false){
                             var selectedObject = scene.getObjectByName(otherPlayer);
                             scene.remove( selectedObject );
                         }
-                        if(ArrInfo[0].con == true && otherPlayerInfoArr[0].exi == false)createElements();
+                        //if(ArrInfo[0].con == true && otherPlayerInfoArr[0].exi == false)createElements();
                     }
 
 		</script>
