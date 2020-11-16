@@ -27,7 +27,7 @@ app.get('/' , function(req, res){
 
 io.sockets.on('connection',function(socket){
     connectNum++;
-    console.log(connectNum);
+    //console.log(connectNum);
     nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
     
@@ -49,7 +49,7 @@ io.sockets.on('connection',function(socket){
     */
     
     // S07. client_to_server_broadcastイベント・データを受信し、送信元以外に送信する
-    setInterval(function(){
+    
     
     socket.on('client_to_server_broadcast', function(data) {
         
@@ -63,7 +63,7 @@ io.sockets.on('connection',function(socket){
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
         
-    },1000);
+    
     
 /*
     */
@@ -76,14 +76,14 @@ io.sockets.on('connection',function(socket){
     });
     */
 });
-
+/*
 io.sockets.on('disconnect', function(socket){
         nowPlayerInfo.con = false;
         nowPlayerInfo.exi = false;
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     
 });
-
+*/
 http.listen(PORT, function(){
     console.log('server listening. Port:' + PORT);
 });
