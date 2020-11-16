@@ -58,12 +58,12 @@ io.sockets.on('connection',function(socket){
         nowPlayerInfo.y = data.value.y;
         nowPlayerInfo.z = data.value.z;
         
-        console.log(nowPlayerInfo.exi);
-        console.log(data.value);
+        //console.log(nowPlayerInfo.exi);
+        //console.log(data.value);
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
         
-    },1000/3);
+    },1000);
     
 /*
     */
