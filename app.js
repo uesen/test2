@@ -30,6 +30,7 @@ io.sockets.on('connection',function(socket){
     //console.log(connectNum);
     nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
+    socketArr[connectNum].con = true;
     
     /*
         socket.on('client_to_server_broadcast', function(data) {
@@ -58,16 +59,28 @@ io.sockets.on('connection',function(socket){
         nowPlayerInfo.y = data.value.y;
         nowPlayerInfo.z = data.value.z;
         
+        var i = 0, max;
+        for (i = 0, max = connectNum; i < max; i++) {
+            if (socketArr[i].id == data.value.id) {
+                socketArr[i] = data.value;
+                flg = false;
+            }
+        }
+        if (flg) {
+            socketArr.push(info);
+        }
+        
         //console.log(nowPlayerInfo.exi);
         //console.log(data.value);
-        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
+        socket.broadcast.emit('server_to_client', {value : socketArr});
     });
     
     socket.on('disconnect', function(){
     console.log("消えてました");
         nowPlayerInfo.con = false;
         nowPlayerInfo.exi = false;
-        socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
+        disconnectNum++;
+        //socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     
 });
         

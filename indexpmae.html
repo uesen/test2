@@ -167,7 +167,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 con: false
             };
             
-            var PlayerInfoArr = [];
+            var otherPlayerInfoArr = [];
+            otherPlayerInfoArr[0] = otherPlayerInfo;
             
             
             /*
@@ -201,10 +202,15 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				container.appendChild( renderer.domElement );
                 
 				var group = new THREE.Group();
-				group.add( new Element( 'ufslsvJ3PhY',     0, 0,   240, 0,             0 , 0, '480px', '270px') );
-				group.add( new Element( 'ufslsvJ3PhY',   240, 0,     0, 0,   Math.PI / 2 , 0, '480px', '270px') );
-				group.add( new Element( 'ufslsvJ3PhY',     0, 0, - 240, 0,       Math.PI , 0, '480px', '270px') );
-				group.add( new Element( 'ufslsvJ3PhY', - 240, 0,     0, 0, - Math.PI / 2 , 0, '480px', '270px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0,    0, 0,   0 , 0,  '240px', '135px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0,  240, 0,   0 , 0,  '480px', '270px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0,  480, 0,   0 , 0,  '720px', '405px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0,  720, 0    0 , 0,  '960px', '540px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0,  960, 0,   0 , 0, '1200px', '675px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 0, 1200, 0,   0,  0, '1440px', '810px') );
+                
+                
+                //group.add( new Element( 'ufslsvJ3PhY', - 240, 0,     0, 0, - Math.PI / 2 , 0, '480px', '270px') );
 				scene.add( group );
                 
                 playerElement = new Element( 'ufslsvJ3PhY', nowPosVector.x, nowPosVector.y, nowPosVector.z + 100, 
@@ -401,9 +407,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			}
             
             function createElements(){
-                if(otherPlayerInfo.exi == false){
+                if(otherPlayerInfoArr[0].exi == false){
                 
-                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPosVector.x, otherPosVector.y, otherPosVector.z, 
+                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[0].x, otherPlayerInfoArr[0].y, otherPlayerInfoArr[0].z, 
                                                           otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
 
                             otherPlayer.add(otherPlayerElement);
@@ -467,12 +473,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     playerElement.position.z =  - nowPosVector.z - 100;
                     
                     if(otherPlayerInfo.con == true){
-                    otherPlayerElement.position.x = otherPosVector.x;
-                    //otherPlayerElement.position.y = otherPosVector.y;////////////ここ大事
-                    otherPlayerElement.position.z =  - otherPosVector.z - 100;
+                    otherPlayerElement.position.x = otherPlayerInfoArr[0].x;
+                    otherPlayerElement.position.y = otherPlayerInfoArr[0].y;
+                    otherPlayerElement.position.z =  - otherPlayerInfoArr[0].z - 100;
                     }
                     
-                    console.log("info.con:"+otherPlayerInfo.con);
+                    console.log("info.con:"+otherPlayerInfoArr[0].con);
                     
                     playerElement.rotation.x = nowRotVector.x;
                     //playerElement.rotation.y = nowRotVector.y;
@@ -518,19 +524,19 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			}
             
             function appendPos(info) {
-                        otherPosVector.x = info.value.x;
-                        otherPosVector.y = info.value.y;
-                        otherPosVector.z = info.value.z;
-                        otherPlayerInfo.con = info.value.con;
+                        otherPlayerInfoArr[0].x = info.value[0].x;
+                        otherPlayerInfoArr[0].y = info.value[0].y;
+                        otherPlayerInfoArr[0].z = info.value[0].z;
+                        otherPlayerInfoArr[0].con = info.value[0].con;
                         //otherPlayerInfo.exi = info.value.exi;
                         
                         //console.log(info);
                         
-                        if(info.value.con == false){
+                        if(info.value[0].con == false){
                             var selectedObject = scene.getObjectByName(otherPlayer);
                             scene.remove( selectedObject );
                         }
-                        if(info.value.con == true && otherPlayerInfo.exi == false)createElements();
+                        if(info.value[0].con == true && otherPlayerInfoArr[0].exi == false)createElements();
                     }
 
 		</script>
