@@ -62,6 +62,14 @@ io.sockets.on('connection',function(socket){
         //console.log(data.value);
         socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
     });
+    
+    sockets.on('disconnect', function(){
+    console.log("消えてました");
+        nowPlayerInfo.con = false;
+        nowPlayerInfo.exi = false;
+        //socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
+    
+});
         
     
     
@@ -77,13 +85,7 @@ io.sockets.on('connection',function(socket){
     */
 });
 
-sockets.on('disconnect', function(){
-    console.log("消えてました");
-        nowPlayerInfo.con = false;
-        nowPlayerInfo.exi = false;
-        //socket.broadcast.emit('server_to_client', {value : nowPlayerInfo});
-    
-});
+
 
 http.listen(PORT, function(){
     console.log('server listening. Port:' + PORT);
