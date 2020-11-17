@@ -67,7 +67,7 @@ io.on('connection',function(socket){
         for (i = 0; i < socketArr.length; i++) {
             console.log(i);
             if (socketArr[i].id == socket.id) {
-                if(data.value.x){
+                if(typeof data.value.x === "undefined"){
                 socketArr[i].x = data.value.x;
                 socketArr[i].y = data.value.y;
                 socketArr[i].z = data.value.z;
