@@ -599,8 +599,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 }
                 socket.emit("client_to_server_broadcast", {value : playerInfo});
                 
-                console.log("value="+{value : playerInfo.id} );
-                console.log("valueNashi="+playerInfo );
+                console.log("value.id="+{value : playerInfo.id} );
+                console.log("valueNashi.id="+playerInfo.id );
             }
             
             function appendVec(data){
