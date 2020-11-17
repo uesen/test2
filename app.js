@@ -57,17 +57,23 @@ io.on('connection',function(socket){
     socketArr[connectNum] = nonPlayerInfo;
     
     var flg2 = true;
-    
-       for (var i = 0; i < socketArr.length; i++){
-           if (socketArr[i].id == socket.id) {
+    var int = 0
+       for (int = 0; int < socketArr.length; int++){
+           if (socketArr[int].id == socket.id) {
+               console.log("同じIDからの接続がありました");
                flg2 = true;
                break;
            }else{
+               console.log("同じIDを検索中です");
                 flg2 = false;
                 }
            }
     
-    if(flg2 == false)connectNum++;
+    if(flg2 == false){
+        connectNum++;
+        console.log("新しくIDを追加しました");
+        }   
+      
        
     
     socket.on('client_to_server_broadcast', function(data) {
