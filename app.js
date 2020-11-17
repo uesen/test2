@@ -55,8 +55,33 @@ io.on('connection',function(socket){
         };
     
     
+    socketArr[connectNum] = nonPlayerInfo;
+    
+    socket.on('id_emit', function(data){
+        var flg2 = true;
+        var int = 0
+        for (int = 0; int < socketArr.length; int++){
+           if (socketArr[int].id == data.value) {
+               console.log("同じIDからの接続がありました");
+               flg2 = true;
+               break;
+           }else{
+               console.log("同じIDを検索中です");
+                flg2 = false;
+                }
+           }
+        
+        if(flg2 == false){
+        
+        socketArr[connectNum].id = data.value;
+        connectNum++;
+        console.log("新しくIDを追加しました..."+connectNum+"個目");
+        }   
+      
+        });
     
     
+    /*
     var flg2 = true;
     var int = 0
        for (int = 0; int < socketArr.length; int++){
@@ -76,12 +101,12 @@ io.on('connection',function(socket){
         }   
       
     socketArr[connectNum] = nonPlayerInfo;
-       
+       */
     
     socket.on('client_to_server_broadcast', function(data) {
         
-        console.log("data="+data);
-        console.log("data.value="+data.value);
+        //console.log("data="+data);
+        //console.log("data.value="+data.value);
         /*
         nowPlayerInfo.id = data.value.id;
         nowPlayerInfo.x = data.value.x;
@@ -92,7 +117,7 @@ io.on('connection',function(socket){
         var i = 0;
         for (i = 0; i < socketArr.length; i++) {
             //console.log(i);
-            if (socketArr[i].id == socket.id) {
+            if (socketArr[i].id == data.value.id) {
                 if(typeof data.value.x === "undefined"){}else{
                     socketArr[i].x = data.value.x;
                     socketArr[i].y = data.value.y;
@@ -122,7 +147,7 @@ io.on('connection',function(socket){
     
     socket.on('disconnect', function(){
        console.log("消えてました");
-        
+        /*
         var int2 = 0;
         var flg3 = true;
         for (int2 = 0; int2 < socketArr.length; int2++){
@@ -135,7 +160,7 @@ io.on('connection',function(socket){
                 flg2 = false;
                 }
            }
-        
+        */
         
         //nowPlayerInfo.con = false;
         //nowPlayerInfo.exi = false;

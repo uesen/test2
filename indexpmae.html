@@ -205,6 +205,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
                 
+                socket.emit('id_emit',playerInfo.id);
+                
 				var group = new THREE.Group();
 				group.add( new Element( 'ufslsvJ3PhY',     0,     0, -   0, 0,   0 , 0,  '240px', '135px') );
 				group.add( new Element( 'ufslsvJ3PhY',     0,  67.5, - 480, 0,   0 , 0,  '480px', '270px') );
@@ -217,7 +219,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 //group.add( new Element( 'ufslsvJ3PhY', - 240, 0,     0, 0, - Math.PI / 2 , 0, '480px', '270px') );
 				scene.add( group );
                 
-                playerElement = new Element( 'ufslsvJ3PhY', nowPosVector.x, nowPosVector.y, nowPosVector.z + 100, 
+                playerElement = new Element( 'ufslsvJ3PhY', -nowPosVector.x, nowPosVector.y, nowPosVector.z + 100, 
                                               nowRotVector.x,   nowRotVector.y,    nowRotVector.z , '240px', '135px');
                 player.add(playerElement);
                 scene.add( player );
@@ -377,7 +379,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 //document.body.appendChild( renderer.domElement );
                 
 				window.addEventListener( 'resize', onWindowResize, false );
-
+                /*
+                window.addEventListener('beforeunload', (event) => {
+                      //event.preventDefault();
+                      //event.returnValue = '';
+                    });
+                    */
 				// Block iframe events when dragging camera
 
 				//var blocker = document.getElementById( 'blocker' );
