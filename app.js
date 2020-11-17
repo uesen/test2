@@ -56,6 +56,7 @@ io.on('connection',function(socket){
     
     
     
+    
     var flg2 = true;
     var int = 0
        for (int = 0; int < socketArr.length; int++){
@@ -71,13 +72,16 @@ io.on('connection',function(socket){
     
     if(flg2 == false){
         connectNum++;
-        console.log("新しくIDを追加しました");
+        console.log("新しくIDを追加しました..."+connectNum+"個目");
         }   
       
     socketArr[connectNum] = nonPlayerInfo;
        
     
     socket.on('client_to_server_broadcast', function(data) {
+        
+        console.log("data="+data);
+        console.log("data.value="+data.value);
         /*
         nowPlayerInfo.id = data.value.id;
         nowPlayerInfo.x = data.value.x;
@@ -117,7 +121,22 @@ io.on('connection',function(socket){
     });
     
     socket.on('disconnect', function(){
-    console.log("消えてました");
+       console.log("消えてました");
+        
+        var int2 = 0;
+        var flg3 = true;
+        for (int2 = 0; int2 < socketArr.length; int2++){
+           if (socketArr[int2].id == socket.id) {
+               console.log(socket.id + "からの接続がきれました");
+               flg2 = true;
+               break;
+           }else{
+               console.log("消えたIDを検索中です");
+                flg2 = false;
+                }
+           }
+        
+        
         //nowPlayerInfo.con = false;
         //nowPlayerInfo.exi = false;
         disconnectNum++;

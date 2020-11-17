@@ -561,8 +561,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         otherPlayerInfoArr[i].z = ArrInfo[i].z;
                         otherPlayerInfoArr[i].con = ArrInfo[i].con;
                         
-                        console.log("前のArrInfo.con="+ArrInfo[i].con);
-                        console.log("前のexiArr="+exiArr[i]);
+                        //console.log("前のArrInfo.con="+ArrInfo[i].con);
+                        //console.log("前のexiArr="+exiArr[i]);
                         
                         if(ArrInfo[i].con == true && exiArr[i] == false)createElements(i);
                         
@@ -582,12 +582,15 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         
                         
                         console.log("Pos内"+i+"回目");
-                        console.log("ArrInfo="+ArrInfo[i]);
-                        console.log("exiArr="+exiArr[i]);
+                        //console.log("ArrInfo="+ArrInfo[i]);
+                        //console.log("exiArr="+exiArr[i]);
                         
                     }
                 }
                 socket.emit("client_to_server_broadcast", {value : playerInfo});
+                
+                console.log("value="+{value : playerInfo} );
+                console.log("valueNashi="+playerInfo );
             }
             
             function appendVec(data){
