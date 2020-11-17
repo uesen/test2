@@ -116,7 +116,7 @@ io.on('connection',function(socket){
         var flg = true;
         var i = 0;
         for (i = 0; i < socketArr.length; i++) {
-            console.log(data.value.id + "はdata.value.id");
+            //console.log(data.value.id + "はdata.value.id");
             if (socketArr[i].id == data.value.id) {
                 if(typeof data.value.x === "undefined"){}else{
                     socketArr[i].x = data.value.x;
