@@ -65,6 +65,7 @@ io.on('connection',function(socket){
         var flg = true;
         var i = 0;
         for (i = 0; i < socketArr.length; i++) {
+            console.log(i);
             if (socketArr[i].id == socket.id) {
                 socketArr[i] = data.value;//.valueいるか微妙
                 //console.log(data.value);
