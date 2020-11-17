@@ -66,7 +66,7 @@ io.on('connection',function(socket){
         var i = 0;
         for (i = 0; i < socketArr.length; i++) {
             if (socketArr[i].id == socket.id) {
-                socketArr[i] = data.value;
+                socketArr[i] = data.value;//.valueいるか微妙
                 //console.log(data.value);
                 flg = false;
                 //console.log(i+"までは行けてます")
@@ -82,8 +82,8 @@ io.on('connection',function(socket){
         //console.log(connectNum);
         
         //setInterval(function(){
-        //socket.broadcast.emit('server_to_client', {value :socketArr});
-        socket.emit('server_to_client', {value :socketArr});
+        socket.broadcast.emit('server_to_client', {value :socketArr});
+        //socket.emit('server_to_client', {value :socketArr});//これだとサーバー停まる
            // }, 1000/30);
         
     });
