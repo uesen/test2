@@ -61,7 +61,7 @@ io.on('connection',function(socket){
         var flg2 = true;
         var int = 0
         for (int = 0; int < socketArr.length; int++){
-           if (socketArr[int].id == data.value) {
+           if (socketArr[int].id == data) {
                console.log("同じIDからの接続がありました");
                flg2 = true;
                break;
@@ -73,7 +73,7 @@ io.on('connection',function(socket){
         
         if(flg2 == false){
         
-        socketArr[connectNum].id = data.value;
+        socketArr[connectNum].id = data;
         connectNum++;
         console.log("新しくIDを追加しました..."+connectNum+"個目");
         }   
