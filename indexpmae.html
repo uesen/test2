@@ -562,7 +562,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         otherPlayerInfoArr[i].z = ArrInfo[i].z;
                         otherPlayerInfoArr[i].con = ArrInfo[i].con;
                         
-                        if(otherPlayerInfoArr[i].con == true){
+                        if(ArrInfo[i].con == true && exiArr[i] == false){
                         otherPlayerElement[i].position.x = otherPlayerInfoArr[i].x;
                         otherPlayerElement[i].position.y = otherPlayerInfoArr[i].y;
                         otherPlayerElement[i].position.z =  - otherPlayerInfoArr[i].z - 100;
@@ -575,6 +575,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                             scene.remove( selectedObject );
                         }
                         */
+                        if(ArrInfo[i].con == true && exiArr[i] == false)createElements(i);
+                        
                         console.log("Pos内"+i+"回目");
                         console.log(ArrInfo[i]);
                         
