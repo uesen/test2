@@ -206,6 +206,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				container.appendChild( renderer.domElement );
                 
                 socket.emit('id_emit',socket.id);
+                socket.on('id_on',function(data){
+                    playerInfo.id = data;
+                });
                 
 				var group = new THREE.Group();
 				group.add( new Element( 'ufslsvJ3PhY',     0,     0, -   0, 0,   0 , 0,  '240px', '135px') );
