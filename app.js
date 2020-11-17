@@ -38,7 +38,7 @@ app.get('/' , function(req, res){
     res.sendFile(__dirname+'/indexpmae.html');
 });
 
-io.on('connection',function(socket){
+io.once('connection',function(socket){
     connectNum++;
     
     
@@ -50,7 +50,9 @@ io.on('connection',function(socket){
     exi: false,
     con: true
 };
-    
+});
+      
+io.on('connection',function(socket){
     //nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
     socketArr[connectNum] = nonPlayerInfo;
