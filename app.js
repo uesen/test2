@@ -8,7 +8,7 @@ var disconnectNum = 0;
 var timer = null;
 
 var socketArr = [];
-
+/*
 var nowPlayerInfo = {
     id: '',
     x: 0,
@@ -17,6 +17,7 @@ var nowPlayerInfo = {
     exi: false,
     con: false
 };
+*/
 /*
 var nonPlayerInfo = {
     id: '',
@@ -50,7 +51,7 @@ io.on('connection',function(socket){
     con: true
 };
     
-    nowPlayerInfo.con = true;
+    //nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
     socketArr[connectNum] = nonPlayerInfo;
     
@@ -81,7 +82,8 @@ io.on('connection',function(socket){
         //console.log(connectNum);
         
         //setInterval(function(){
-        socket.broadcast.emit('server_to_client', {value :socketArr});
+        //socket.broadcast.emit('server_to_client', {value :socketArr});
+        socket.emit('server_to_client', {value :socketArr});
            // }, 1000/30);
         
     });
