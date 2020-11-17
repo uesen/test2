@@ -62,7 +62,7 @@ io.on('connection',function(socket){
         var int = 0
         for (int = 0; int < socketArr.length; int++){
            if (socketArr[int].id == data) {
-               console.log("同じIDからの接続がありました");
+               console.log("同じID("+data+")からの接続がありました");
                flg2 = true;
                break;
            }else{
