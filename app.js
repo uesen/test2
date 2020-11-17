@@ -86,7 +86,7 @@ io.on('connection',function(socket){
         var flg = true;
         var i = 0;
         for (i = 0; i < socketArr.length; i++) {
-            console.log(i);
+            //console.log(i);
             if (socketArr[i].id == socket.id) {
                 if(typeof data.value.x === "undefined"){}else{
                     socketArr[i].x = data.value.x;
