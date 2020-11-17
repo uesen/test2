@@ -65,18 +65,18 @@ io.on('connection',function(socket){
         var flg = true;
         var i = 0;
         for (i = 0; i < socketArr.length; i++) {
-            if (socketArr[i].id == data.value.id) {
+            if (socketArr[i].id == socket.id) {
                 socketArr[i] = data.value;
-                console.log(data.value);
+                //console.log(data.value);
                 flg = false;
                 //console.log(i+"までは行けてます")
             }
         }
-        
+        /*
         if (flg) {
             socketArr.push(data.value);
         }
-        
+        */
         //console.log(nowPlayerInfo.exi);
         //console.log(socketArr);
         //console.log(connectNum);
