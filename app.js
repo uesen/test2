@@ -54,7 +54,7 @@ io.on('connection',function(socket){
             con: true
         };
     
-    socketArr[connectNum] = nonPlayerInfo;
+    
     
     var flg2 = true;
     var int = 0
@@ -74,6 +74,7 @@ io.on('connection',function(socket){
         console.log("新しくIDを追加しました");
         }   
       
+    socketArr[connectNum] = nonPlayerInfo;
        
     
     socket.on('client_to_server_broadcast', function(data) {
