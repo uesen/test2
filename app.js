@@ -67,10 +67,12 @@ io.on('connection',function(socket){
         for (i = 0; i < socketArr.length; i++) {
             console.log(i);
             if (socketArr[i].id == socket.id) {
+                if(data){
                 socketArr[i].x = data.value.x;
                 socketArr[i].y = data.value.y;
                 socketArr[i].z = data.value.z;
                 socketArr[i].con = data.value.con;
+                }//一つ一つ判別したほうがいい気もする
                 //console.log(data.value);
                 flg = false;
                 //console.log(i+"までは行けてます")
