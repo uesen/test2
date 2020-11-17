@@ -42,7 +42,13 @@ io.once('connection',function(socket){
     connectNum++;
     
     
-    var nonPlayerInfo = {
+
+});
+      
+io.on('connection',function(socket){
+    //nowPlayerInfo.con = true;
+    //nowPlayerInfo.exi = true;
+        var nonPlayerInfo = {
     id: socket.id,
     x: Math.random()*1000,
     y: Math.random()*1000,
@@ -50,11 +56,7 @@ io.once('connection',function(socket){
     exi: false,
     con: true
 };
-});
-      
-io.on('connection',function(socket){
-    //nowPlayerInfo.con = true;
-    //nowPlayerInfo.exi = true;
+    
     socketArr[connectNum] = nonPlayerInfo;
     
     socket.on('client_to_server_broadcast', function(data) {
