@@ -410,15 +410,18 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 			}
             
-            function createElements(i){
-                if(exiArr[i] == false){
+            function createElements(numI){
+                cosole.log("エレメントができるまえ");
+                if(exiArr[numI] == false){
                 
-                            otherPlayerElement[i] = new Element( 'ufslsvJ3PhY', otherPlayerInfoArr[i].x, otherPlayerInfoArr[i].y, otherPlayerInfoArr[i].z, 
-                                                          otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
-
-                            otherPlayer.add(otherPlayerElement[i]);
+                            otherPlayerElement[numI] = new Element( 'ufslsvJ3PhY', 
+                                                                    otherPlayerInfoArr[numI].x, otherPlayerInfoArr[numI].y, otherPlayerInfoArr[numI].z, 
+                                                                    otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
+                            
+                            cosole.log("エレメントができてる");
+                            otherPlayer.add(otherPlayerElement[numI]);
                             scene.add( otherPlayer );
-                            exiArr[i] = true
+                            exiArr[numI] = true
                         }
                 
             }
