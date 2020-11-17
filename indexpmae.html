@@ -207,6 +207,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 
                 socket.emit('id_emit',socket.id);
                 socket.on('id_on',function(data){
+                    console.log(data+"を受信");
                     playerInfo.id = data;
                 });
                 

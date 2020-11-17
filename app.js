@@ -72,7 +72,7 @@ io.on('connection',function(socket){
            }
         
         if(flg2 == false){
-        io.to(socket.id).emit('id_emit',socket.id);
+        io.to(socket.id).emit('id_emit',{value: socket.id});
         socketArr[connectNum].id = socket.id;
         connectNum++;
         console.log("新しくIDを追加しました..."+connectNum+"個目");
