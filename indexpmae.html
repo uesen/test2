@@ -154,7 +154,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             var socket = io.connect();
     
             var playerInfo = {
-                id: socket.id,
+                id: "",
                 x: 0,
                 y: 0,
                 z: 0,
@@ -163,7 +163,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             };
             
             var otherPlayerInfo = {
-                id: socket.id,
+                id: "",
                 x: 0,
                 y: 0,
                 z: 0,
@@ -206,7 +206,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				container.appendChild( renderer.domElement );
                 
                 socket.emit('id_emit',socket.id);
-                socket.on('id_on',function(data){
+                socket.on('id_on',function(data){//次買えるならココ
                     console.log(data+"を受信");
                     playerInfo.id = data;
                 });
