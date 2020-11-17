@@ -46,7 +46,7 @@ io.on('connection',function(socket){
     //nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
         var nonPlayerInfo = {
-            id: socket.id,
+            id: "",
             x: Math.random()*1000,
             y: Math.random()*1000,
             z: Math.random()*1000,
@@ -73,8 +73,8 @@ io.on('connection',function(socket){
         
         if(flg2 == false){
         io.to(id).emit('id_emit',socket.id);
-        connectNum++;
         socketArr[connectNum].id = socket.id;
+        connectNum++;
         console.log("新しくIDを追加しました..."+connectNum+"個目");
         }   
       
