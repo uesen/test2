@@ -526,7 +526,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     //playerInfo.y = nowPosVector.y;
                     //playerInfo.z = nowPosVector.z;
             
-                    socket.emit("client_to_server_broadcast", {value : playerInfo});
+                    socket.emit("client_to_server_broadcast", {playerInfo}); //valueいるか微妙
                     
                     //console.log(apVec);
                     
