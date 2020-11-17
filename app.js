@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
-var connectNum = -1;
+var connectNum = 0;
 var disconnectNum = 0;
 var timer = null;
 
@@ -38,26 +38,37 @@ app.get('/' , function(req, res){
     res.sendFile(__dirname+'/indexpmae.html');
 });
 
-io.once('connection',function(socket){
-    connectNum++;
-    
-    
 
-});
       
 io.on('connection',function(socket){
+    
+    //connectNum++;
     //nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
         var nonPlayerInfo = {
-    id: socket.id,
-    x: Math.random()*1000,
-    y: Math.random()*1000,
-    z: Math.random()*1000,
-    exi: false,
-    con: true
-};
+            id: socket.id,
+            x: Math.random()*1000,
+            y: Math.random()*1000,
+            z: Math.random()*1000,
+            exi: false,
+            con: true
+        };
     
     socketArr[connectNum] = nonPlayerInfo;
+    
+    var flg2 = true;
+    
+       for (var i = 0; i < socketArr.length; i++){
+           if (socketArr[i].id == socket.id) {
+               flg2 = true;
+               break;
+           }else{
+                flg2 = false;
+                }
+           }
+    
+    if(flg2 == false)connectNum++;
+       
     
     socket.on('client_to_server_broadcast', function(data) {
         /*
@@ -72,10 +83,10 @@ io.on('connection',function(socket){
             console.log(i);
             if (socketArr[i].id == socket.id) {
                 if(typeof data.value.x === "undefined"){}else{
-                socketArr[i].x = data.value.x;
-                socketArr[i].y = data.value.y;
-                socketArr[i].z = data.value.z;
-                socketArr[i].con = data.value.con;
+                    socketArr[i].x = data.value.x;
+                    socketArr[i].y = data.value.y;
+                    socketArr[i].z = data.value.z;
+                    socketArr[i].con = data.value.con;
                 }//一つ一つ判別したほうがいい気
                 //console.log(data.value);
                 flg = false;
