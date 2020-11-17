@@ -43,9 +43,9 @@ io.on('connection',function(socket){
     
     var nonPlayerInfo = {
     id: socket.id,
-    x: 0,
-    y: 0,
-    z: 0,
+    x: Math.random()*1000,
+    y: Math.random()*1000,
+    z: Math.random()*1000,
     exi: false,
     con: true
 };
@@ -66,18 +66,19 @@ io.on('connection',function(socket){
         for (i = 0; i < socketArr.length; i++) {
             if (socketArr[i].id == data.value.id) {
                 socketArr[i] = data.value;
+                console.log(data.value);
                 flg = false;
                 //console.log(i+"までは行けてます")
             }
         }
         
         if (flg) {
-            socketArr.push(data);
+            socketArr.push(data.value);
         }
         
         //console.log(nowPlayerInfo.exi);
         //console.log(socketArr);
-        console.log(connectNum);
+        //console.log(connectNum);
         
         //setInterval(function(){
         socket.broadcast.emit('server_to_client', {value :socketArr});
