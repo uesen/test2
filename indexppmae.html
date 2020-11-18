@@ -66,7 +66,7 @@
 		<script type="module">
 
 			import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.module.js';
-            //import { TWEEN } from './jsm/libs/tween.module.min.js';
+            import { TWEEN } from './js/tween.module.min.js';
             
 			import { TrackballControls } from '/js/TrackballControls.js';
             import { FirstPersonControls } from './js/FirstPersonControls.js';
@@ -106,6 +106,17 @@
 			const direction = new THREE.Vector3();
 			const vertex = new THREE.Vector3();
 			const color = new THREE.Color();
+            
+            /////NPC
+            var npcElements = [];
+            var npcPosVectors = [];
+            
+            for(var i = 0; i < 2; i++){
+            npcPosVectors[i] = new THREE.Vector3(Math.random()*100,Math.random()*100,Math.random()*100);
+            }
+            
+            var timers = 0;
+            /////
 
 			var Element = function ( id, x, y, z, rx, ry, rz, wPx, hPx ) {
 
@@ -150,14 +161,29 @@
 				group.add( new Element( 'ufslsvJ3PhY',   240, 0,     0, 0,   Math.PI / 2 , 0, '480px', '270px') );
 				group.add( new Element( 'ufslsvJ3PhY',     0, 0, - 240, 0,       Math.PI , 0, '480px', '270px') );
 				group.add( new Element( 'ufslsvJ3PhY', - 240, 0,     0, 0, - Math.PI / 2 , 0, '480px', '270px') );
+                group.add( new Element( 'ufslsvJ3PhY',     0,     0, -   0, 0,   0 , 0,  '240px', '135px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0,  67.5, - 480, 0,   0 , 0,  '480px', '270px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0,   135, - 960, 0,   0 , 0,  '720px', '405px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 202.5, -1440, 0,   0 , 0,  '960px', '540px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0,   270, -1920, 0,   0 , 0, '1200px', '675px') );
+				group.add( new Element( 'ufslsvJ3PhY',     0, 337.5, -2400, 0,   0 , 0, '1440px', '810px') );
 				scene.add( group );
                 
                 playerElement = new Element( 'ufslsvJ3PhY', nowPosVector.x, nowPosVector.y, nowPosVector.z + 100, 
-                                              nowRotVector.x,   nowRotVector.y,    nowRotVector.z , '240px', '135px');
+                                                            nowRotVector.x, nowRotVector.y, nowRotVector.z , '240px', '135px');
                 player.add(playerElement);
-                console.log(playerElement);
+                //console.log(playerElement);
                 //player.add( new Element( 'ufslsvJ3PhY', -nowPosVector.x, -nowPosVector.y, -nowPosVector.z, 0,    0,    0 , '480px', '270px') );
                 scene.add( player );
+                
+                //////////////NPC
+                for(var i = 0; i < 2; i++){
+                npcElements[i] = new Element( 'ufslsvJ3PhY', npcPosVectors[i].x, npcPosVectors[i].y, npcPosVectors[i].z + 100, 
+                                              0,   0,    0, '240px', '135px');
+                scene.add( npcElements[i] );
+                }
+                //////////////
+                
                 
                 //TrackballControlsをonにするときはココ
                 /*
@@ -313,7 +339,37 @@
                 */
 
 			}
+            
+            ////////////////////////////////////////////////////////
+            function transform( object, target, duration ) {
 
+				//TWEEN.removeAll();
+
+                    //const object;
+					//const targets;
+                    //for(var i = 0; i < 2; i++){
+                        
+					new TWEEN.Tween( object.position )
+						.to( { x: target.x, y: target.y, z: target.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+                    /*
+					new TWEEN.Tween( object.rotation )
+						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+				*/
+                        //}
+                
+				new TWEEN.Tween( this )
+					.to( {}, duration * 2 )
+					.onUpdate( render )
+					.start();
+
+			}
+            
+            ////////////////////////////////////////////////////
 			function onWindowResize() {
 
 				camera.aspect = 0.5 * window.innerWidth / window.innerHeight;
@@ -327,6 +383,9 @@
 			function animate() {
                 
 				requestAnimationFrame( animate );
+                /////////////
+                TWEEN.update();
+                /////////////
 				const time = performance.now();
 
 				if ( controls.isLocked === true ) {
@@ -380,8 +439,30 @@
                     playerElement.rotation.z = nowRotVector.z;
                     //console.log(playerElement);
                     
+                    ////////////////////////////////
+                    
+                    timers++;
+                    
+                    if(timers>400){
+                        for(var i = 0; i < 2; i++){
+                            //npcElements[i].position.x += 100;
+                            var targeting = new THREE.Vector3(Math.random()*1000,Math.random()*1000,Math.random()*1000);
+                            transform(npcElements[i],targeting, 2000);
+                            //transform(npcElements[i+1],targeting, 2000);
+                            console.log(i);
+                            //npcPosVectors[i].y += 100;
+                        }
+                        timers = 0;
+                   } 
+                    
+                    //console.log( npcPosVectors[0].y);
+                    //console.log( npcPosVectors[1].y);
+                    ///////////////////////////////////
+                    
+                    
+                    
                     //let newLength = nowPos.push(nowPosVector);
-                    console.log(nowPosVector.z);
+                   // console.log(nowPosVector.z);
                     
                     /*
 					if ( controls.getObject().position.y < 10 ) {
@@ -399,9 +480,16 @@
 				prevTime = time;
                 
                 //renderer.setSize(window.innerWidth , window.innerHeight);
+                
+				render();
+                
+                
+			}
+            
+            function render() {
+
 				renderer.render( scene, camera );
-                
-                
+
 			}
 
 		</script>

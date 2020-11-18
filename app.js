@@ -41,7 +41,9 @@ app.get('/' , function(req, res){
 
       
 io.on('connection',function(socket){
-    
+    if(connectNum > 45){
+        connectNum = 0;
+    }
     //connectNum++;
     //nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;

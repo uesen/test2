@@ -74,7 +74,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<script type="module">
 
 			import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.module.js';
-            //import { TWEEN } from './jsm/libs/tween.module.min.js';
+            import { TWEEN } from './js/tween.module.min.js';
             
 			import { TrackballControls } from './js/TrackballControls.js';
             import { FirstPersonControls } from './js/FirstPersonControls.js';
@@ -129,6 +129,17 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			const direction = new THREE.Vector3();
 			const vertex = new THREE.Vector3();
 			const color = new THREE.Color();
+            
+            /////NPC
+            var npcElements = [];
+            var npcPosVectors = [];
+            
+            for(var i = 0; i < 2; i++){
+            npcPosVectors[i] = new THREE.Vector3(Math.random()*100,Math.random()*100,Math.random()*100);
+            }
+            
+            var timers = 0;
+            /////
 
 			var Element = function ( id, x, y, z, rx, ry, rz, wPx, hPx ) {
 
@@ -229,6 +240,16 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                                               nowRotVector.x,   nowRotVector.y,    nowRotVector.z , '240px', '135px');
                 player.add(playerElement);
                 scene.add( player );
+                
+                //////////////NPC
+                for(var i = 0; i < 2; i++){
+                npcElements[i] = new Element( 'ufslsvJ3PhY', npcPosVectors[i].x, npcPosVectors[i].y, npcPosVectors[i].z + 100, 
+                                              0,   0,    0, '240px', '135px');
+                scene.add( npcElements[i] );
+                }
+                //////////////
+                
+                
                 //console.log(playerElement);
                 
                 /*
@@ -412,6 +433,37 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 */
 
 			}
+            
+            ////////////////////////////////////////////////////////NPC
+            function transform( object, target, duration ) {
+
+				//TWEEN.removeAll();
+
+                    //const object;
+					//const targets;
+                    //for(var i = 0; i < 2; i++){
+                        
+					new TWEEN.Tween( object.position )
+						.to( { x: target.x, y: target.y, z: target.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+                    /*
+					new TWEEN.Tween( object.rotation )
+						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+				*/
+                        //}
+                
+				new TWEEN.Tween( this )
+					.to( {}, duration * 2 )
+					.onUpdate( render )
+					.start();
+
+			}
+            
+            ////////////////////////////////////////////////////
 
 			function onWindowResize() {
 
@@ -444,6 +496,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			function animate() {
                 
 				requestAnimationFrame( animate );
+                
+                /////////////
+                TWEEN.update();
+                /////////////
+                
 				const time = performance.now();
                 /*
                 if(bran == true){
@@ -512,6 +569,26 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     playerElement.rotation.z = nowRotVector.z;
                     //console.log(playerElement);
                     
+                     ////////////////////////////////
+                    
+                    timers++;
+                    
+                    if(timers>400){
+                        for(var i = 0; i < 2; i++){
+                            //npcElements[i].position.x += 100;
+                            var targeting = new THREE.Vector3(Math.random()*1000,Math.random()*1000,Math.random()*1000);
+                            transform(npcElements[i],targeting, 2000);
+                            //transform(npcElements[i+1],targeting, 2000);
+                            console.log(i);
+                            //npcPosVectors[i].y += 100;
+                        }
+                        timers = 0;
+                   } 
+                    
+                    //console.log( npcPosVectors[0].y);
+                    //console.log( npcPosVectors[1].y);
+                    ///////////////////////////////////
+                    
                     //let newLength = nowPos.push(nowPosVector);
                     //console.log(nowPosVector.z);
                     
@@ -560,10 +637,17 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				prevTime = time;
                 
                 //renderer.setSize(window.innerWidth , window.innerHeight);
-				renderer.render( scene, camera );
+				render();
                 
                 
 			}
+            
+            function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
             
             function appendPos(info) {
                         var ArrInfo = [];
@@ -609,8 +693,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 }
                 socket.emit("client_to_server_broadcast", {value : playerInfo});
                 
-                console.log("value.id="+{value : playerInfo.id} );
-                console.log("valueNashi.id="+playerInfo.id );
+                //console.log("value.id="+{value : playerInfo.id} );
+                //console.log("valueNashi.id="+playerInfo.id );
             }
             
             function appendVec(data){
