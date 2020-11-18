@@ -112,7 +112,7 @@
             var npcPosVectors = [];
             
             for(var i = 0; i < 2; i++){
-            npcPosVectors[i] = new THREE.Vector3(Math.random()*100,Math.random()*100,Math.random()*100);
+            npcPosVectors[i] = new THREE.Vector3((Math.random()*1500)-750,Math.random()*1000,Math.random()*-2400);
             }
             
             var timers = 0;
@@ -446,7 +446,7 @@
                     if(timers>400){
                         for(var i = 0; i < 2; i++){
                             //npcElements[i].position.x += 100;
-                            var targeting = new THREE.Vector3(Math.random()*1000,Math.random()*1000,Math.random()*1000);
+                            var targeting = new THREE.Vector3((Math.random()*1500)-750,Math.random()*1000,Math.random()*-2400);
                             transform(npcElements[i],targeting, 2000);
                             //transform(npcElements[i+1],targeting, 2000);
                             console.log(i);
