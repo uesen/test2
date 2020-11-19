@@ -80,6 +80,10 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             import { FirstPersonControls } from './js/FirstPersonControls.js';
             import { PointerLockControls } from './js/PointerLockControls.js';
             
+            /////////////////////
+            import{RectAreaLightUniformsLib} from './js/RectAreaLightUniformsLib.js';
+            import{RectAreaLightHelper} from './js/RectAreaLightHelper.js';
+            //////////////////////
             
 			import { CSS3DRenderer, CSS3DObject } from './js/CSS3DRenderer.js';
             import { Clock } from './js/Clock.js';
@@ -89,6 +93,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			import { ShaderPass } from './js/ShaderPass.js';
 
 			var camera, scene, renderer;
+            var scene2, renderer2;///////////////////////////////////
 			var controls, clock;
             var nowPos = [];
             let raycaster;
@@ -204,6 +209,49 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             ////////////////
 			init();
 			animate();
+            
+            function gridCreate(width, height, wg, hg, material,x,y,z, rx, ry, rz){
+                
+                  const grid_bottom = new THREE.PlaneGeometry(width, height, wg,hg);
+                  //const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
+                  // メッシュを作成
+                  const mesh_bottom = new THREE.Mesh(grid_bottom, material);
+                  mesh_bottom.position.set(x, y, z);
+                  mesh_bottom.rotation.set(rx, ry, rz);
+                  // 3D空間にメッシュを追加
+                  scene.add(mesh_bottom);
+                
+                  const wireframe = new THREE.WireframeGeometry( grid_bottom );
+
+                  const line = new THREE.LineSegments( wireframe );
+                  line.material.depthTest = false;
+                  line.material.opacity = 0.15;
+                  line.material.transparent = true;
+                  line.position.set(x,y,z);
+                  line.rotation.set(rx, ry, rz);
+                  scene.add( line );
+                  
+                }
+            
+            function gridOnlyCreate(width, height, wg, hg, x, y, z, rx, ry, rz){
+                
+                  const grid_bottom = new THREE.PlaneGeometry(width, height, wg,hg);
+                  //const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
+                  // メッシュを作成
+                  // 3D空間にメッシュを追加
+                  //scene.add(mesh_bottom);
+                
+                  const wireframe = new THREE.WireframeGeometry( grid_bottom );
+
+                  const line = new THREE.LineSegments( wireframe );
+                  line.material.depthTest = true;
+                  line.material.opacity = 0.4;
+                  line.material.transparent = true;
+                  line.position.set(x,y,z);
+                  line.rotation.set(rx, ry, rz);
+                  scene.add( line );
+                  
+                }
 
 			function init() {
 
@@ -211,10 +259,14 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 container.style.display = 'none';
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.set( 0, 0, 1000 );
+                camera.far = 10000;///////////////////////
 
 				scene = new THREE.Scene();
-
+                scene.background = new THREE.Color( "rgba(0, 0, 0)");/////////////
+                
 				renderer = new CSS3DRenderer();
+                renderer.domElement.style.position = 'absolute';/////////
+                renderer.domElement.style.top = 0;///////////////////////
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
                 
@@ -223,6 +275,72 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     console.log(data+"を受信");
                     playerInfo.id = data;
                 });
+                
+                /////////////////////////////////////////////
+                scene.fog = new THREE.Fog(0x000010, 50, 10000);
+                scene2 = new THREE.Scene();
+                scene2.background = new THREE.Color( "rgba(0, 0, 0)");
+                renderer2 = new THREE.WebGLRenderer();
+                renderer2.setPixelRatio( window.devicePixelRatio );
+				renderer2.setSize( window.innerWidth, window.innerHeight );
+                renderer2.gammaInput = true;
+                renderer2.gammaOutput = true;
+				container.appendChild( renderer2.domElement );
+                
+                
+                var group2 = new THREE.Group();
+
+                  const material = new THREE.MeshPhysicalMaterial( { color: 0xFFFFFF, emissive: 0x000102, side: THREE.DoubleSide, flatShading: true } );
+                  // メッシュを作成
+                  const geometry = new THREE.SphereGeometry(30, 10, 10);
+                  const mesh = new THREE.Mesh(geometry, material);
+                  //mesh.position.set =(600,600,600);
+                  // 3D空間にメッシュを追加
+                  //scene.add(mesh);
+                
+                  gridCreate(2000, 5000, 20, 50, material,0,-60,0, Math.PI/2, 0,0 );
+                  gridCreate(1500, 5000, 15, 50, material,-1000,690,0, 0, Math.PI/2, Math.PI/2 );
+                  gridCreate(2000, 1500, 20, 15, material,0,690,-2500, 0, 0,0 );
+                
+                  gridCreate(2000, 5000, 20, 50, material,0,-60+1500,0, Math.PI/2, 0,Math.PI );
+                  gridCreate(1500, 5000, 15, 50, material,1000,690,0, Math.PI, Math.PI/2, Math.PI/2 );
+                  gridCreate(2000, 1500, 20, 15, material,0,690,2500, 0, 0,Math.PI );
+                
+                  
+                　//gridOnlyCreate(240, 135, 2, 1,  67.5, - 480, 0, 0, 0);
+                  //gridCreate(2000, 5000, 20, 50, material,0,-60,0, Math.PI/2, 0,0 );
+                  // 平行光源
+                  const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+                  //directionalLight.position.set(1, 10, 1);
+                /*
+                  for(var i = 0; i < 6; i++){
+                  const light = new THREE.RectAreaLight(0xFFFFFF, 5.0, 20, 40);
+                  //light.position.set(0, 0, -480 * i);
+                  scene.add(light);
+                      const lightHelper = new THREE.PointLightHelper(light);
+                   scene.add(lightHelper);
+                
+                  }
+                  */
+                  //const lightHelper = new THREE.PointLightHelper(light);
+                   //scene.add(lightHelper);
+                for(var i = 0; i < 6; i++){
+                    gridOnlyCreate(250 * (i+1) ,   145 * (i+1), 2 * (i+1), 1 * (i+1),  
+                                  0, 67.5 * (i), - 480 * (i) + 10, 0, 0, 0);
+                    const light = new THREE.RectAreaLight(0xFFFFFF, 2.0, 240*(1+i), 135*(1+i));
+                  light.position.set(0, 0, -480 * i);
+                  light.lookAt(new THREE.Vector3(0, 0, 40));
+                  scene.add(light);
+                }
+                  // シーンに追加
+                  //scene.add(directionalLight);
+                
+                
+                
+                  scene.add( group2 );
+                
+                //////////////////////////////////////////////////
+                
                 
 				var group = new THREE.Group();
 				group.add( new Element( 'ufslsvJ3PhY',     0,     0, -   0, 0,   0 , 0,  '240px', '135px') );
@@ -637,6 +755,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				prevTime = time;
                 
                 //renderer.setSize(window.innerWidth , window.innerHeight);
+                renderer2.render( scene, camera );///////////////////
 				render();
                 
                 
@@ -701,6 +820,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 apVec = data;
                 
             }
+            
 
 		</script>
 	</body>
