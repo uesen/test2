@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 
 <!--
-Virtual、仮想と訳されてきた。
+.1
 
+Virtual、Virtualは仮想と訳されてきた。
+Real、現実との対義語になることも多い。
+Virtual Reality、仮想現実は少しずつ当たり前のようになってきた。
+Virtual Reality、仮想現実とは相反している単語を組み合わせたようにも見える。
+Virtual Reality、仮想現実とは、仮想なのだろうか、現実なのだろうか。
+Virtual、例えば、インターネットは仮想だろうか。
+Virtual、　　　　インターネットは現実だろうか。
+Virtual、そう考えると、仮想はあまりいい訳ではないのかもしれない。
+Virtual、実質と訳す方が話が通りやすいのではないだろうか。
+Virtual、実質。実際の姿はさておき、そのあとに続く言葉の本来の姿と比べて、遜色ない時に使う言葉だ。
+Virtual、インターネットも、VRと呼ばれるものも実質、現実だ。
 
+Substance、Substanceは物質と訳される。
+Substance、この四年間、空間の作品を作るときは、物質と光を組み合わせて作ってきた。
+Substance、光は物理学だと物質ではない。もちろん議論はあるだろうが、光は哲学だと物質だといえるという。
+Substance、物質はスクリーンや、鏡、部屋。光はプロジェクタから出る映像、鏡から反射される映像、空気中の粒子に乱反射する映像。
+Substance、光は波と粒子の二重性こそあるものの、実質的に物質だと考えて今まで作品は作ってきた。
+Substance、実質、光の四角錐がプロジェクターに刺さっている。というような具合である。
+Substance、実質には、他の訳も存在する。
+Substance、Substance。
+
+Virtual Reality、仮想と現実を行き来することで考える。
+仮想を変えることで変わる現実。
+現実が変わることでかわる仮想。
+実質、一つの現実へ。
+実質、一つの物質へ。
+
+実質 -substance-
 
 -->
 
@@ -81,7 +108,26 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 
 		<script type="module">
-
+            
+            /*
+            インスタレーションは自分がその作品にインストールされることで完成する。
+            この作品では、自分がサーバーにアップロードされ、他の人がダウンロードする。
+            その末、また、その様の映像がアップロードされ、自分がもう一度目にすることになる。
+            インターネット空間上のこの作品の中にいるときは、この作品の中にいることはできないが、
+            インターネット空間上のこの作品にいるときは、この作品の中を見ることができる。
+            インターネット空間上のこの作品にいるときは、この作品の中になることができる。
+            様々な入れ子構造をこの作品で見ることができる。
+            
+            for(;;){
+            ｛映像の中に映像｝の中の
+            ｛他人の中に自分｝の中の
+            ｛現実の中の仮想｝の中の
+            ｛物質の中のインターネット｝の中の
+            ｛実質の中の実質｝
+            }
+            */
+            
+            
 			import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.module.js';
             import { TWEEN } from './js/tween.module.min.js';
             
@@ -202,20 +248,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             otherPlayerInfoArr[0] = otherPlayerInfo;
             
             
-            /*
-            function appendMsg(text) {
-                $("#chatLogs").append("<div>" + text + "</div>");
-            }
-
-            $("form").submit(function(e){
-                var message = $("#msgForm").val();
-                $("#msgForm").val('');
-                socket.emit("client_to_server", {value : message});
-                e.preventDefault();
-            });
-            */
             
-            ////////////////
 			init();
 			animate();
             
@@ -245,10 +278,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             function gridOnlyCreate(width, height, wg, hg, x, y, z, rx, ry, rz){
                 
                   const grid_bottom = new THREE.PlaneGeometry(width, height, wg,hg);
-                  //const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
-                  // メッシュを作成
-                  // 3D空間にメッシュを追加
-                  //scene.add(mesh_bottom);
+                  
                 
                   const wireframe = new THREE.WireframeGeometry( grid_bottom );
 
@@ -263,6 +293,10 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 }
 
 			function init() {
+                
+                console.log(
+                    ".2　　"+
+                    "実質。写真は真実を写すとして社会で認識されていた。と、よく議論がされる。適当な検索エンジンで調べれば数多くの記事を見ることになるだろう。大抵の議論は、写真は真実であると考えるのは間違いだという論調だ。つまり、「一般に写真に写るものは真実として扱われている」という前提がなぜかある。しかし、誰もが写真は真実そのものではないと知っている。なぜ、あのペラペラの、2次元の像を、本当に真実と同義のように考えるのか。写真はその場にある光を利用して作成される。その過程から、「実質的に真実」であると考えられた。実質は、実際の現実とは違う。だが、実際と遜色ないものだ。写真技術を手に入れたときから、Virtual、実質的な現実がそこにあった。いや、絵画が実質的に現実だった時代もあったはずだ。偶像崇拝を禁止する宗教があるのは、偶像が実質的に現実になってしまうからではないか。創作されたものは、現実ではないのかもしれない。だが、現実と創作物を見分ける術を、本来は持ち合わせていない。文脈的に判断しているだけなので、多くの混乱を巻き起こす。つまり、創作されたものは実質的に現実のものなのである。");
 
 				var container = document.getElementById( 'container' );
                 container.style.display = 'none';
@@ -280,8 +314,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				container.appendChild( renderer.domElement );
                 
                 socket.emit('id_emit',socket.id);
-                socket.on('id_on',function(data){//次買えるならココ
-                    console.log(data+"を受信");
+                socket.on('id_on',function(data){
+                    //console.log(data+"を受信");
                     playerInfo.id = data;
                 });
                 
@@ -300,12 +334,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 var group2 = new THREE.Group();
 
                   const material = new THREE.MeshPhysicalMaterial( { color: 0xFFFFFF, emissive: 0x000102, side: THREE.DoubleSide, flatShading: true } );
-                  // メッシュを作成
                   const geometry = new THREE.SphereGeometry(30, 10, 10);
                   const mesh = new THREE.Mesh(geometry, material);
-                  //mesh.position.set =(600,600,600);
-                  // 3D空間にメッシュを追加
-                  //scene.add(mesh);
+                  
                 
                   gridCreate(2000, 5000, 20, 50, material,0,-60,0, Math.PI/2, 0,0 );
                   gridCreate(1500, 5000, 15, 50, material,-1000,690,0, 0, Math.PI/2, Math.PI/2 );
@@ -315,24 +346,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                   gridCreate(1500, 5000, 15, 50, material,1000,690,0, Math.PI, Math.PI/2, Math.PI/2 );
                   gridCreate(2000, 1500, 20, 15, material,0,690,2500, 0, 0,Math.PI );
                 
-                  
-                　//gridOnlyCreate(240, 135, 2, 1,  67.5, - 480, 0, 0, 0);
-                  //gridCreate(2000, 5000, 20, 50, material,0,-60,0, Math.PI/2, 0,0 );
-                  // 平行光源
                   const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
-                  //directionalLight.position.set(1, 10, 1);
-                /*
-                  for(var i = 0; i < 6; i++){
-                  const light = new THREE.RectAreaLight(0xFFFFFF, 5.0, 20, 40);
-                  //light.position.set(0, 0, -480 * i);
-                  scene.add(light);
-                      const lightHelper = new THREE.PointLightHelper(light);
-                   scene.add(lightHelper);
-                
-                  }
-                  */
-                  //const lightHelper = new THREE.PointLightHelper(light);
-                   //scene.add(lightHelper);
+
                 for(var i = 0; i < 6; i++){
                     gridOnlyCreate(250 * (i+1) ,   145 * (i+1), 2 * (i+1), 1 * (i+1),  
                                   0, 67.5 * (i), - 480 * (i) + 10, 0, 0, 0);
@@ -341,10 +356,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                   light.lookAt(new THREE.Vector3(0, 0, 40));
                   scene.add(light);
                 }
-                  // シーンに追加
-                  //scene.add(directionalLight);
-                
-                
+
                 
                   scene.add( group2 );
                 
@@ -360,7 +372,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				group.add( new Element( 'ufslsvJ3PhY',     0, 337.5, -2400, 0,   0 , 0, '1440px', '810px') );
                 
                 
-                //group.add( new Element( 'ufslsvJ3PhY', - 240, 0,     0, 0, - Math.PI / 2 , 0, '480px', '270px') );
 				scene.add( group );
                 
                 playerElement = new Element( 'ufslsvJ3PhY', -nowPosVector.x, nowPosVector.y, nowPosVector.z + 100, 
@@ -374,41 +385,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                                               0,   0,    0, '240px', '135px');
                 scene.add( npcElements[i] );
                 }
-                //////////////
                 
-                
-                //console.log(playerElement);
-                
-                /*
-                socket.on("server_to_client", function(data){appendPos1(data)});
-                function appendPos1(info) {
-                        otherPosVector.x = info.x;
-                        otherPosVector.y = info.y;
-                        otherPosVector.z = info.z;
-                        otherPlayerInfo.con = info.con;
-                        if(info.con == true){
-                            
-                            scene.__removeObject( otherPlayer );
-                
-                            otherPlayerElement = new Element( 'ufslsvJ3PhY', otherPosVector.x, otherPosVector.y, otherPosVector.z, 
-                                                          otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
-
-                            otherPlayer.add(otherPlayerElement);
-                            scene.add( otherPlayer );
-                        }
-            }
-            */
-                //player.add( new Element( 'ufslsvJ3PhY', -nowPosVector.x, -nowPosVector.y, -nowPosVector.z, 0,    0,    0 , '480px', '270px') );
-                
-                
-                //TrackballControlsをonにするときはココ
-                /*
-				controls = new TrackballControls( camera, renderer.domElement );
-				controls.rotateSpeed = 4;
-                */
-                
-                //////////////////////////////////
-                //PointerLockControlsはここ
                 controls = new PointerLockControls(camera, document.body);
                 
                 const blocker = document.getElementById( 'blocker' );
@@ -523,65 +500,20 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 //////////////////////////////////////
                 
                 clock = new THREE.Clock();
-                /*
-                //FPSはここ
-                controls = new FirstPersonControls(camera, renderer.domElement);
-                controls.movementSpeed = 1000;
-				controls.lookSpeed = 0.1;
-                */
-                /////////////////////////////////////////
-                //document.body.appendChild( renderer.domElement );
                 
 				window.addEventListener( 'resize', onWindowResize, false );
-                /*
-                window.addEventListener('beforeunload', (event) => {
-                      //event.preventDefault();
-                      //event.returnValue = '';
-                    });
-                    */
-				// Block iframe events when dragging camera
-
-				//var blocker = document.getElementById( 'blocker' );
-				//blocker.style.display = 'none';
-                //blocker.style.display = '';
-
-                //FPSとPointerのときにはここも消そう！
-                /*
-				controls.addEventListener( 'start', function () {
-
-					blocker.style.display = '';
-
-				} );
-				controls.addEventListener( 'end', function () {
-
-					blocker.style.display = 'none';
-
-				} );
-                */
 
 			}
             
             ////////////////////////////////////////////////////////NPC
             function transform( object, target, duration ) {
 
-				//TWEEN.removeAll();
 
-                    //const object;
-					//const targets;
-                    //for(var i = 0; i < 2; i++){
-                        
 					new TWEEN.Tween( object.position )
 						.to( { x: target.x, y: target.y, z: target.z }, Math.random() * duration + duration )
 						.easing( TWEEN.Easing.Exponential.InOut )
 						.start();
-                    /*
-					new TWEEN.Tween( object.rotation )
-						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
-						.easing( TWEEN.Easing.Exponential.InOut )
-						.start();
 
-				*/
-                        //}
                 
 				new TWEEN.Tween( this )
 					.to( {}, duration * 2 )
@@ -603,14 +535,14 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			}
             
             function createElements(numI){
-                console.log("エレメントができるまえ");
+                //console.log("転生");
                 if(exiArr[numI] == false){
                 
                             otherPlayerElement[numI] = new Element( 'ufslsvJ3PhY', 
                                                                     otherPlayerInfoArr[numI].x, otherPlayerInfoArr[numI].y, otherPlayerInfoArr[numI].z, 
                                                                     otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
                             
-                            console.log("エレメントができてる");
+                            //console.log("いわゆる「転生もの」が流行っている。それは、SAOがまさにそうであるように、違う現実の自分との出会いが、VRやSNSの影響で多くなっているからだろう。ゲーム上で違う自分をロールプレイする、当初、そんなことは仮想空間上の話だったが、いつの間にか現実との区別がつかなくなってきた。SNS上でのやり取りは、現実ではない、存在しないといえばナンセンスだろう。「転生もの」は、これから先、起こる未来のシミュレーションだ。");
                             otherPlayer.add(otherPlayerElement[numI]);
                             scene.add( otherPlayer );
                             exiArr[numI] = true
@@ -629,14 +561,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 /////////////
                 
 				const time = performance.now();
-                /*
-                if(bran == true){
-                socket.on('id_on',function(data){//次買えるならココ
-                    console.log(data+"を受信");
-                    playerInfo.id = data;
-                });
-                }
-*/
+
 				if ( controls.isLocked === true ) {
 
 					raycaster.ray.origin.copy( controls.getObject().position );
@@ -657,7 +582,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 					direction.z = Number( moveForward ) - Number( moveBackward );
 					direction.x = Number( moveRight ) - Number( moveLeft );
                     direction.y = Number( moveDown ) - Number( moveUp );
-					direction.normalize(); // this ensures consistent movements in all directions
+					direction.normalize(); 
 
 					if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
 					if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
@@ -673,28 +598,22 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 					controls.moveRight( - velocity.x * delta );
 					controls.moveForward( - velocity.z * delta );
 
-					controls.getObject().position.y += ( velocity.y * delta ); // new behavior
+					controls.getObject().position.y += ( velocity.y * delta ); 
                     
                     nowPosVector = controls.getObject().position;
                     nowRotVector = controls.getObject().rotation;
                     //playerElement.position = controls.getObject().position;
                     
-                    playerElement.position.x = nowPosVector.x;
+                    playerElement.position.x = - nowPosVector.x;
                     //playerElement.position.y = nowPosVector.y;
                     playerElement.position.z =  - nowPosVector.z - 100;
-                    /*
-                    if(otherPlayerInfo.con == true){
-                    otherPlayerElement.position.x = otherPlayerInfoArr[0].x;
-                    otherPlayerElement.position.y = otherPlayerInfoArr[0].y;
-                    otherPlayerElement.position.z =  - otherPlayerInfoArr[0].z - 100;
-                    }
-                    */
-                    //console.log("info.con:"+otherPlayerInfoArr[0].con);
+    
+                    //console.log("他人と自分の違いが、この作品ではとても分かりにくい。常に二つのNPCが動いているので、自分が同じタイミングで動き出すと連動しているように感じる。そして肝心の自分の動きは、支店の動きと真逆の動きをしている。一回気付くことができれば、認識することはできるが、他人が増えていくことで識別しづらくなっていく"+otherPlayerInfoArr[0].con);
                     
                     playerElement.rotation.x = nowRotVector.x;
                     //playerElement.rotation.y = nowRotVector.y;
                     playerElement.rotation.z = nowRotVector.z;
-                    //console.log(playerElement);
+                    //console.log(スマートフォンを鏡代わりにすることも珍しくなくなってきたが、黒い画面の反射ではなく、内カメラを使った場合は、かなり鏡とは違う挙動を見せる。例えば、右目と左目、スマートフォンでみると同じ顔が映っているが、鏡は反射する光が違うので右目と左目で違う像が移る。鏡で見ると、自分の好きな場所にピントを合わすことができるが、スマートフォンで見るとカメラ準拠のピントになる。いずれ、カメラとディスプレイだけで鏡と同じ挙動ができる日がくるだろう。3Dカメラも、3Dディスプレイも、技術自体はある。スマートフォンレベルのデバイスで普及する日がきっとくる。これは、制限時間のある、世界のおかしさである。);
                     
                      ////////////////////////////////
                     
@@ -706,38 +625,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                             var targeting = new THREE.Vector3((Math.random()*1500)-750,Math.random()*1000,Math.random()*-2400);
                             transform(npcElements[i],targeting, 2000);
                             //transform(npcElements[i+1],targeting, 2000);
-                            console.log(i);
+                            //console.log(i);
                             //npcPosVectors[i].y += 100;
                         }
                         timers = 0;
                    } 
                     
-                    //console.log( npcPosVectors[0].y);
-                    //console.log( npcPosVectors[1].y);
-                    ///////////////////////////////////
-                    
-                    //let newLength = nowPos.push(nowPosVector);
-                    //console.log(nowPosVector.z);
-                    
-                    /*
-					if ( controls.getObject().position.y < 10 ) {
-
-						velocity.y = 0;
-						controls.getObject().position.y = 10;
-
-						canJump = true;
-
-					}
-                    */
-                    
-                    
-                    //socket.on("server_to_client", function(data){appendPos(data)});
-                    //socket.on("ninzu", function(data){appendNinzo(data)});
-                    /*
-                    function appendNinzo(data){
-                        conPlayNum = data;
-                    }
-                */  
                     
                     playerInfo.x = nowPosVector.x;
                     playerInfo.y = nowPosVector.y;
@@ -745,10 +638,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     
                     socket.on("server_to_client", function(data){appendVec(data.value)});
                     
-                    //console.log(otherPlayerInfo.exi);
-                    //playerInfo.x = nowPosVector.x;
-                    //playerInfo.y = nowPosVector.y;
-                    //playerInfo.z = nowPosVector.z;
             
                     socket.emit("client_to_server_broadcast", {value: playerInfo}); //valueいるか微妙
                     
@@ -756,14 +645,13 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     
                     appendPos(apVec);
                     
-                    console.log(apVec);
+                    //console.log(apVec);
                     
                     
 				}
 
 				prevTime = time;
                 
-                //renderer.setSize(window.innerWidth , window.innerHeight);
                 renderer2.render( scene, camera );///////////////////
 				render();
                 
@@ -793,8 +681,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         otherPlayerInfoArr[i].z = ArrInfo[i].z;
                         otherPlayerInfoArr[i].con = ArrInfo[i].con;
                         
-                        //console.log("前のArrInfo.con="+ArrInfo[i].con);
-                        //console.log("前のexiArr="+exiArr[i]);
                         
                         if(ArrInfo[i].con == true && exiArr[i] == false)createElements(i);
                         
@@ -804,31 +690,36 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                         otherPlayerElement[i].position.z =  - otherPlayerInfoArr[i].z - 100;
                         }
                     
-                        //otherPlayerInfo.exi = info.value.exi;
-                        /*
-                        if(info.value[0].con == false){
-                            var selectedObject = scene.getObjectByName(otherPlayer);
-                            scene.remove( selectedObject );
-                        }
-                        */
-                        
-                        
-                        console.log("Pos内"+i+"回目");
-                        //console.log("ArrInfo="+ArrInfo[i]);
-                        //console.log("exiArr="+exiArr[i]);
+
                         
                     }
                 }
                 socket.emit("client_to_server_broadcast", {value : playerInfo});
                 
-                //console.log("value.id="+{value : playerInfo.id} );
-                //console.log("valueNashi.id="+playerInfo.id );
+                //console.log(IDによって管理される社会というと、悲観的な響きだが、そもそも名前はIDと大して変わらない。もしも家族内でしかコミュニケーションをとらなくていい生物だったら、母父姉妹兄弟など家族内での位置関係をいう言葉存在するだけでよい。個別の名前はいらない。固有名詞も同じだ。識別する必要があるから名前がつく。林檎と梨を区別するために名前は必要だ。林檎同士なら名前はいらないが、品種もこだわると名前がいる。同じ品種同士なら名前はいらないが、その農家は一つ一つ、それこそIDをつけているかもしれない。そもそもIDはidentifier(識別子)からきているので、当たり前ではある。IDと名前は似ているので、後から識別されるものの方が長くなったり複雑になったりする。虫→カブトムシ→コーカサスオオカブトのように。Twitterなどでは、より短いIDを持っていることは価値になったりして、実際に売られていたりする。そうなってくると、文字数の少ない単語というのは、その言語を話す人にとって、身近で重要なものだったのではないだろうか。体の一部はかなり短い、目、歯、鼻、耳。め、は、はな、は植物にも共通する単語だ。逆に最近の言葉で短い言葉を聞くと考える。たまたまそのIDをとれたのか、それとも昔使われていたそのものが死に、別の何かにIDが付け替えられたのか。);
             }
             
             function appendVec(data){
                 apVec = data;
                 
             }
+            
+            /*
+            
+            実質 -substance-
+            
+            コロナ禍によって、多くのものがオンライン化された。
+            この作品もその一つかもしれない。
+            それまでも曖昧になっていた現実と仮想の狭間は、より混沌になった。
+            テレビや映画、漫画や小説など、今までの仮想も、創作と現実の狭間を乗り越え、今よりももっとなだれ込んでくるだろう。
+            逆に、創作を現実としてとらえることは今よりももっと多くなっていくだろう。
+            今までの仮想にも乗り込んでいくことになる。
+            現実と仮想の違いは、物質とデータの違いは、実質的に存在しなくなる。
+            そうなるのではないか。
+            一度考える場所が必要だと考えて、この場所を作った。
+            
+            */
+            
             
 
 		</script>
