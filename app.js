@@ -5,7 +5,7 @@ const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
 var connectNum = 0;
 var disconnectNum = 0;
-var timer = null;
+var timer = 0;
 
 var socketArr = [];
 /*
@@ -41,9 +41,11 @@ app.get('/' , function(req, res){
 
       
 io.on('connection',function(socket){
-    if(connectNum > 40){
+    if(connectNum > 20){
         connectNum = 0;
     }
+    
+    timer++;
     //connectNum++;
     //nowPlayerInfo.con = true;
     //nowPlayerInfo.exi = true;
@@ -106,7 +108,11 @@ io.on('connection',function(socket){
        */
     
     socket.on('client_to_server_broadcast', function(data) {
-        
+        timer++;
+        if(timer>1000*60*60*4){
+            connectNum = 0;
+            timer=0;
+        }
         //console.log("data="+data);
         //console.log("data.value="+data.value);
         /*
