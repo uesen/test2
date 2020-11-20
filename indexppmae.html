@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
+        <link rel="icon" href="./favicon.ico" />
         
 		<style>
 			body {
@@ -62,7 +63,7 @@
                 background-image: url(key.png);
                 background-repeat:  no-repeat;  
                 object-fit: fill;
-                width: 25%;
+                width: 100%;
                 height: 25%;
                 top: 25px;
                 left: 25px;
@@ -82,6 +83,10 @@
                 transform: translateX(-146.5px);
                 
             }
+            
+            .fit-picture {
+            width: 250px;
+                       }
             
             
             
@@ -194,7 +199,9 @@
 				return object;
 
 			};
+            //////////////////////////////////////
 
+////////////////////
 			init();
 			animate();
             
@@ -240,7 +247,18 @@
                   scene.add( line );
                   
                 }
-
+            ////////////////////
+            function createImg(src, wid, x, y, z , rx, ry, rz){
+                var divdiv =  document.createElement( 'img' );
+                divdiv.src = src;
+                divdiv.width = wid;
+                var divdivdiv = new CSS3DObject( divdiv );
+				divdivdiv.position.set( x, y, z );
+				divdivdiv.rotation.set(rx, ry, rz);
+                scene.add(divdivdiv);
+                
+            }
+/////////////////////////
 			function init() {
 
 				var container = document.getElementById( 'container' );
@@ -271,6 +289,15 @@
                 renderer2.gammaOutput = true;
 				container.appendChild( renderer2.domElement );
                 
+                //////////////////////////////////////
+                createImg("./logo.png",    146,  700, 0, 400 , 0, -Math.PI/2, 0);
+                createImg("./poster1.png", 146,  700, 73, 566 , 0, -Math.PI/2, 0);
+                createImg("./poster2.png", 146,  700, 73, 722 , 0, -Math.PI/2, 0);
+                ///////////////////////////
+                
+                
+                
+                
                 
                 var group2 = new THREE.Group();
 
@@ -291,6 +318,17 @@
                   gridCreate(2000, 1500, 20, 15, material,0,690,2500, 0, 0,Math.PI );
                 
                   
+                  const gide = new THREE.PlaneGeometry(293, 183, 0, 0);
+                  const material2 = new THREE.MeshStandardMaterial({color: 0xFFFFFF, emissive: 0x000102, side: THREE.DoubleSide, flatShading: false});
+                  // メッシュを作成
+                  const mesh_gide = new THREE.Mesh(gide, material2);
+                  mesh_gide.position.set(0, 0, 140);
+                  mesh_gide.rotation.set(0, Math.PI/2, 0);
+                  // 3D空間にメッシュを追加
+                  scene.add(mesh_gide);
+                
+                  
+                
                 　//gridOnlyCreate(240, 135, 2, 1,  67.5, - 480, 0, 0, 0);
                   //gridCreate(2000, 5000, 20, 50, material,0,-60,0, Math.PI/2, 0,0 );
                   // 平行光源
@@ -338,6 +376,8 @@
 				group.add( new Element( 'ufslsvJ3PhY',     0, 202.5, -1440, 0,   0 , 0,  '960px', '540px') );
 				group.add( new Element( 'ufslsvJ3PhY',     0,   270, -1920, 0,   0 , 0, '1200px', '675px') );
 				group.add( new Element( 'ufslsvJ3PhY',     0, 337.5, -2400, 0,   0 , 0, '1440px', '810px') );
+                
+                
 				scene.add( group );
                 
                 playerElement = new Element( 'ufslsvJ3PhY', nowPosVector.x, nowPosVector.y, nowPosVector.z + 100, 

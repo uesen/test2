@@ -38,11 +38,10 @@ Virtual Reality、仮想と現実を行き来することで考える。
 		<title>実質 -substance-</title>
 		<meta charset="utf-8">
         
-        <link rel="stylesheet"
-href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         	
-<link rel="icon" href="/favicon.ico" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <link rel="icon" href="./favicon.ico" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="./socket.io/socket.io.js"></script>
         
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -98,7 +97,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 background-image: url(key.png);
                 background-repeat:  no-repeat;  
                 object-fit: fill;
-                width: 25%;
+                width: 100%;
                 height: 25%;
                 top: 25px;
                 left: 25px;
@@ -128,7 +127,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<div id="blocker" style="none">
 
 			<div id="instructions" style>
-				<span style="font-size:36px">Click to play</span>
+				<span style="font-size:36px">Click to Access</span>
 				<br /><br />
 				Move: WASD<br/>
 				Up & Down: R F<br/>
@@ -324,6 +323,17 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                   scene.add( line );
                   
                 }
+            
+            function createImg(src, wid, x, y, z , rx, ry, rz){
+                var divdiv =  document.createElement( 'img' );
+                divdiv.src = src;
+                divdiv.width = wid;
+                var divdivdiv = new CSS3DObject( divdiv );
+				divdivdiv.position.set( x, y, z );
+				divdivdiv.rotation.set(rx, ry, rz);
+                scene.add(divdivdiv);
+                
+            }
 
 			function init() {
                 
@@ -361,6 +371,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 renderer2.gammaInput = true;
                 renderer2.gammaOutput = true;
 				container.appendChild( renderer2.domElement );
+                
+                //////////////////////////////////////
+                createImg("./logo.png",    146,  700, 0, 400 , 0, -Math.PI/2, 0);
+                createImg("./poster1.png", 146,  700, 73, 566 , 0, -Math.PI/2, 0);
+                createImg("./poster2.png", 146,  700, 73, 722 , 0, -Math.PI/2, 0);
+                ///////////////////////////
                 
                 
                 var group2 = new THREE.Group();
