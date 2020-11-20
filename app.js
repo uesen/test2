@@ -41,7 +41,7 @@ app.get('/' , function(req, res){
 
       
 io.on('connection',function(socket){
-    if(connectNum > 45){
+    if(connectNum > 40){
         connectNum = 0;
     }
     //connectNum++;

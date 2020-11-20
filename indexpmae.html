@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <!--
-.1
 
 Virtual、Virtualは仮想と訳されてきた。
 Real、現実との対義語になることも多い。
@@ -41,6 +40,8 @@ Virtual Reality、仮想と現実を行き来することで考える。
         
         <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        	
+<link rel="icon" href="/favicon.ico" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="./socket.io/socket.io.js"></script>
         
@@ -50,6 +51,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<style>
 			body {
                 margin: 0;
+                width: 100%;
+				height: 100%;
                 overflow: hidden;
 				background-color: #000000;
 			}
@@ -58,7 +61,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				position: absolute;
 				width: 100%;
 				height: 100%;
-                background-color: rgba(0,0,0,0.5);
+                background-color: rgba(10,10,10,1);
 			}
             
             #instructions {
@@ -89,9 +92,37 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 				cursor: pointer;
 			}
+            
+            .key{
+                position: absolute;
+                background-image: url(key.png);
+                background-repeat:  no-repeat;  
+                object-fit: fill;
+                width: 25%;
+                height: 25%;
+                top: 25px;
+                left: 25px;
+            }
+            .logo{
+                background-image: url(logo.png);
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+                background-repeat:  no-repeat;  
+                object-fit: fill;
+                text-align : center;
+                width: 293px;
+                height: 183px;
+                top: 10%;
+                left: 50%;
+                transform: translateX(-146.5px);
+                
+            }
+            
 		</style>
 	</head>
 	<body>
+        <div class="key" style></div>
 		<div id="container" style="none">
         </div>
 		<div id="blocker" style="none">
@@ -103,7 +134,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 				Up & Down: R F<br/>
 				Look: MOUSE
 			</div>
-
+            <div class="logo" style></div>
 		</div>
 
 
@@ -123,7 +154,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             ｛他人の中に自分｝の中の
             ｛現実の中の仮想｝の中の
             ｛物質の中のインターネット｝の中の
-            ｛実質の中の実質｝
+            ｛実質の中の実質｝の中の
             }
             */
             
@@ -297,8 +328,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 			function init() {
                 
                 console.log(
-                    ".2　　"+
-                    "実質。写真は真実を写すとして社会で認識されていた。と、よく議論がされる。適当な検索エンジンで調べれば数多くの記事を見ることになるだろう。大抵の議論は、写真は真実であると考えるのは間違いだという論調だ。つまり、「一般に写真に写るものは真実として扱われている」という前提がなぜかある。しかし、誰もが写真は真実そのものではないと知っている。なぜ、あのペラペラの、2次元の像を、本当に真実と同義のように考えるのか。写真はその場にある光を利用して作成される。その過程から、「実質的に真実」であると考えられた。実質は、実際の現実とは違う。だが、実際と遜色ないものだ。写真技術を手に入れたときから、Virtual、実質的な現実がそこにあった。いや、絵画が実質的に現実だった時代もあったはずだ。偶像崇拝を禁止する宗教があるのは、偶像が実質的に現実になってしまうからではないか。創作されたものは、現実ではないのかもしれない。だが、現実と創作物を見分ける術を、本来は持ち合わせていない。文脈的に判断しているだけなので、多くの混乱を巻き起こす。つまり、創作されたものは実質的に現実のものなのである。");
+                    "実質。仮想。現実。ひとつへと。Done.");
 
 				var container = document.getElementById( 'container' );
                 container.style.display = 'none';
@@ -387,6 +417,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                                               0,   0,    0, '240px', '135px');
                 scene.add( npcElements[i] );
                 }
+                
+                 //console.log(IDによって管理される社会というと、悲観的な響きだが、そもそも名前はIDと大して変わらない。もしも家族内でしかコミュニケーションをとらなくていい生物だったら、母父姉妹兄弟など家族内での位置関係をいう言葉存在するだけでよい。個別の名前はいらない。固有名詞も同じだ。識別する必要があるから名前がつく。林檎と梨を区別するために名前は必要だ。林檎同士なら名前はいらないが、品種もこだわると名前がいる。同じ品種同士なら名前はいらないが、その農家は一つ一つ、それこそIDをつけているかもしれない。そもそもIDはidentifier(識別子)からきているので、当たり前ではある。IDと名前は似ているので、後から識別されるものの方が長くなったり複雑になったりする。虫→カブトムシ→コーカサスオオカブトのように。Twitterなどでは、より短いIDを持っていることは価値になったりして、実際に売られていたりする。そうなってくると、文字数の少ない単語というのは、その言語を話す人にとって、身近で重要なものだったのではないだろうか。体の一部はかなり短い、目、歯、鼻、耳。め、は、はな、は植物にも共通する単語だ。逆に最近の言葉で短い言葉を聞くと考える。たまたまそのIDをとれたのか、それとも昔使われていたそのものが死に、別の何かにIDが付け替えられたのか。);
                 
                 controls = new PointerLockControls(camera, document.body);
                 
@@ -544,7 +576,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                                                                     otherPlayerInfoArr[numI].x, otherPlayerInfoArr[numI].y, otherPlayerInfoArr[numI].z, 
                                                                     otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
                             
-                            //console.log("いわゆる「転生もの」が流行っている。それは、SAOがまさにそうであるように、違う現実の自分との出会いが、VRやSNSの影響で多くなっているからだろう。ゲーム上で違う自分をロールプレイする、当初、そんなことは仮想空間上の話だったが、いつの間にか現実との区別がつかなくなってきた。SNS上でのやり取りは、現実ではない、存在しないといえばナンセンスだろう。「転生もの」は、これから先、起こる未来のシミュレーションだ。");
+                            //console.log("ゲーム上で違う自分をロールプレイする。仮想空間上の話が、いつの間にか現実との区別がつかなくなってきた。SNS上でのやり取りは、現実ではない、存在しないといえばナンセンスだ。");
                             otherPlayer.add(otherPlayerElement[numI]);
                             scene.add( otherPlayer );
                             exiArr[numI] = true
@@ -615,7 +647,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                     playerElement.rotation.x = nowRotVector.x;
                     //playerElement.rotation.y = nowRotVector.y;
                     playerElement.rotation.z = nowRotVector.z;
-                    //console.log(スマートフォンを鏡代わりにすることも珍しくなくなってきたが、黒い画面の反射ではなく、内カメラを使った場合は、かなり鏡とは違う挙動を見せる。例えば、右目と左目、スマートフォンでみると同じ顔が映っているが、鏡は反射する光が違うので右目と左目で違う像が移る。鏡で見ると、自分の好きな場所にピントを合わすことができるが、スマートフォンで見るとカメラ準拠のピントになる。いずれ、カメラとディスプレイだけで鏡と同じ挙動ができる日がくるだろう。3Dカメラも、3Dディスプレイも、技術自体はある。スマートフォンレベルのデバイスで普及する日がきっとくる。これは、制限時間のある、世界のおかしさである。);
+                    //console.log(スマートフォンを鏡代わりにすることも珍しくなくなってきたが、黒い画面の反射ではなく、内カメラを使った場合は、かなり鏡とは違う挙動を見せる。例えば、右目と左目、スマートフォンでみると同じ顔が映っているが、鏡は反射する光が違うので右目と左目で違う像が移る。鏡で見ると、自分の好きな場所にピントを合わすことができるが、スマートフォンで見るとカメラ準拠のピントになる。いずれ、カメラとディスプレイだけで鏡と同じ挙動ができる日がくるだろう。3Dカメラも、3Dディスプレイも、技術自体はある。スマートフォンレベルのデバイスで普及する日がきっとくる。これは、制限時間のある、世界のおかしさだ。);
                     
                      ////////////////////////////////
                     
@@ -698,7 +730,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
                 }
                 socket.emit("client_to_server_broadcast", {value : playerInfo});
                 
-                //console.log(IDによって管理される社会というと、悲観的な響きだが、そもそも名前はIDと大して変わらない。もしも家族内でしかコミュニケーションをとらなくていい生物だったら、母父姉妹兄弟など家族内での位置関係をいう言葉存在するだけでよい。個別の名前はいらない。固有名詞も同じだ。識別する必要があるから名前がつく。林檎と梨を区別するために名前は必要だ。林檎同士なら名前はいらないが、品種もこだわると名前がいる。同じ品種同士なら名前はいらないが、その農家は一つ一つ、それこそIDをつけているかもしれない。そもそもIDはidentifier(識別子)からきているので、当たり前ではある。IDと名前は似ているので、後から識別されるものの方が長くなったり複雑になったりする。虫→カブトムシ→コーカサスオオカブトのように。Twitterなどでは、より短いIDを持っていることは価値になったりして、実際に売られていたりする。そうなってくると、文字数の少ない単語というのは、その言語を話す人にとって、身近で重要なものだったのではないだろうか。体の一部はかなり短い、目、歯、鼻、耳。め、は、はな、は植物にも共通する単語だ。逆に最近の言葉で短い言葉を聞くと考える。たまたまそのIDをとれたのか、それとも昔使われていたそのものが死に、別の何かにIDが付け替えられたのか。);
+               
             }
             
             function appendVec(data){
@@ -718,7 +750,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
             今までの仮想にも乗り込んでいくことになる。
             現実と仮想の違いは、物質とデータの違いは、実質的に存在しなくなる。
             そうなるのではないか。
-            一度考える場所が必要だと考えて、この場所を作った。
+            一度考えることができればと、この場所ができた。
             
             */
             
