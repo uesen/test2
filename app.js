@@ -108,11 +108,7 @@ io.on('connection',function(socket){
        */
     
     socket.on('client_to_server_broadcast', function(data) {
-        timer++;
-        if(timer>1000*60*60*4){
-            connectNum = 0;
-            timer=0;
-        }
+
         //console.log("data="+data);
         //console.log("data.value="+data.value);
         /*
