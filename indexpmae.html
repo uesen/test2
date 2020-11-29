@@ -290,11 +290,11 @@ Virtual Reality、仮想と現実を行き来することで考える。
                 
                   const grid_bottom = new THREE.PlaneGeometry(width, height, wg,hg);
                   //const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
-                  // メッシュを作成
+                  
                   const mesh_bottom = new THREE.Mesh(grid_bottom, material);
                   mesh_bottom.position.set(x, y, z);
                   mesh_bottom.rotation.set(rx, ry, rz);
-                  // 3D空間にメッシュを追加
+                  
                   scene.add(mesh_bottom);
                 
                   const wireframe = new THREE.WireframeGeometry( grid_bottom );
@@ -594,7 +594,7 @@ Virtual Reality、仮想と現実を行き来することで考える。
                                                                     otherPlayerInfoArr[numI].x, otherPlayerInfoArr[numI].y, otherPlayerInfoArr[numI].z, 
                                                                     otherRotVector.x,   otherRotVector.y,    otherRotVector.z , '240px', '135px');
                             
-                            //console.log("ゲーム上で違う自分をロールプレイする。仮想空間上の話が、いつの間にか現実との区別がつかなくなってきた。SNS上でのやり取りは、現実ではない、存在しないといえばナンセンスだ。");
+                            //console.log("SNS上でのやり取りは、現実か");
                             otherPlayer.add(otherPlayerElement[numI]);
                             scene.add( otherPlayer );
                             exiArr[numI] = true
@@ -665,7 +665,7 @@ Virtual Reality、仮想と現実を行き来することで考える。
                     playerElement.rotation.x = nowRotVector.x;
                     //playerElement.rotation.y = nowRotVector.y;
                     playerElement.rotation.z = nowRotVector.z;
-                    //console.log(スマートフォンを鏡代わりにすることも珍しくなくなってきたが、黒い画面の反射ではなく、内カメラを使った場合は、かなり鏡とは違う挙動を見せる。例えば、右目と左目、スマートフォンでみると同じ顔が映っているが、鏡は反射する光が違うので右目と左目で違う像が移る。鏡で見ると、自分の好きな場所にピントを合わすことができるが、スマートフォンで見るとカメラ準拠のピントになる。いずれ、カメラとディスプレイだけで鏡と同じ挙動ができる日がくるだろう。3Dカメラも、3Dディスプレイも、技術自体はある。スマートフォンレベルのデバイスで普及する日がきっとくる。これは、制限時間のある、世界のおかしさだ。);
+                    //console.log(例えば、右目と左目、スマートフォンでみると同じ顔が映っているが、鏡は反射する光が違うので右目と左目で違う像が移る。鏡で見ると、自分の好きな場所にピントを合わすことができるが、スマートフォンで見るとカメラ準拠のピントになる。);
                     
                      ////////////////////////////////
                     
@@ -763,12 +763,13 @@ Virtual Reality、仮想と現実を行き来することで考える。
             コロナ禍によって、多くのものがオンライン化された。
             この作品もその一つかもしれない。
             それまでも曖昧になっていた現実と仮想の狭間は、より混沌になった。
-            テレビや映画、漫画や小説など、今までの仮想も、創作と現実の狭間を乗り越え、今よりももっとなだれ込んでくるだろう。
+            テレビや映画、漫画や小説など、今までの仮想も、
+            創作と現実の狭間を乗り越え、今よりももっとなだれ込んでくるだろう。
             逆に、創作を現実としてとらえることは今よりももっと多くなっていくだろう。
             今までの仮想にも乗り込んでいくことになる。
             現実と仮想の違いは、物質とデータの違いは、実質的に存在しなくなる。
-            そうなるのではないか。
-            一度考えることができればと、この場所ができた。
+            そうなるのではないか。そうなのではないか。
+            一度考えることができればと、この場所を作った。
             
             */
             
